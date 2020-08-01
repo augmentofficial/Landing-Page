@@ -1,0 +1,58 @@
+
+    .newsletter-form{
+      display: none;
+    }
+
+    select {
+      font-size: 12px !important;
+    }
+
+    .astrix:after {
+      content:" *";
+      color: red;
+    }
+
+    .form-control:focus{
+      border: 2px solid #673AA2;
+    }
+
+    .form-text{
+      font-family: Poppins;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 12px;
+      line-height: 18px;
+      color: #202020;
+    }
+
+    .form-control option{
+      font-size: 12px;
+    }
+
+    ::-webkit-placeholder {
+      font-size: 100px !important;
+    }
+
+    ::-webkit-input-placeholder {
+      font-size: 12px !important;
+    }
+
+    :-moz-placeholder {
+     font-size: 12px !important;
+    }
+
+    ::-moz-placeholder {
+      font-size: 12px !important;
+    }
+
+    :-ms-input-placeholder {
+      font-size: 12px !important;
+    }
+
+    #optional {
+      display: none;
+    }
+
+    #optional.show {
+      display: block;
+    }
