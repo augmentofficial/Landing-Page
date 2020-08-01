@@ -63,7 +63,7 @@
 
 <!-- END NAV -->
 
-<body>
+  <body>
 
     <section class="landing-area">
       <div class="container">
@@ -381,7 +381,7 @@
 
 
     <!-- Modal -->
-    <div class="modal fade" id="subModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="subModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content" style="border-radius: 20px">
           <div class="modal-header" style="height: 210px; background-image: url('images/modalHeaderBG.png'); background-size: cover">
@@ -401,15 +401,15 @@
                     <label for="first-name">
                       <b class="form-text astrix">First Name</b>
                     </label>
-                    <input type="text" id = "first-name" class="form-control" style = "height: 42px !important; font-size: 12px !important;" placeholder="ex: Jane" required>
+                    <input type="text" id = "first-name" onchange="modal_change()" class="form-control" style = "height: 42px !important; font-size: 12px !important;" placeholder="ex: Jane" required>
                   </div>
                   <div class="form-group" style="margin-top: -9px !important;">
                     <label for="email"><b class="form-text astrix">Email</b></label>
-                    <input type="text" id = "email" class="form-control" placeholder="email@example.com" style = "height: 42px !important; font-size: 12px !important;" required>
+                    <input type="text" id = "email" onchange="modal_change()" class="form-control" placeholder="email@example.com" style = "height: 42px !important; font-size: 12px !important;" required>
                   </div>
                   <div class="form-group" style="margin-top: -9px !important;">
                     <label for="occupation"><b class="form-text astrix">Occupation</b></label>
-                    <select id="occupation" name="occupation" class="form-control" placeholder = "Select" style = "height: 42px !important;" required>
+                    <select id="occupation" onchange="modal_change()" name="occupation" class="form-control" placeholder = "Select" style = "height: 42px !important;" required>
                       <option value="" disabled selected>Select</option>
                       <option value="high-school">I’m a high school student.</option>
                       <option value="college-undergraduate">I’m a college undergraduate student.</option>
@@ -419,7 +419,7 @@
                   </div>
                   <div class="form-group" style="margin-top: -9px !important;">
                     <label for="interested-career"><b class="form-text astrix">Interested Career Role in Tech</b></label>
-                    <select id="interested-career" name="interested-career" class="form-control"  style = "height: 42px !important;" required>
+                    <select id="interested-career" onchange="modal_change()" name="interested-career" class="form-control"  style = "height: 42px !important;" required>
                       <option value="" disabled selected style="font-size: 12px">Select</option>
                       <option value="engineering">Engineering</option>
                       <option value="UI/UX">UI/UX or Product Design</option>
@@ -434,7 +434,7 @@
                     <input type="text" id = "career-role" class="form-control" style = "height: 42px !important; font-size: 12px !important;">
                   </div>
                   <div class="form-group" style="margin-top: -9px !important;">
-                    <button class="btn btn-primary py-3 px-5" disabled="disabled" id="modal-submit" style="font-size: 16px; font-weight: bold; border-radius: 4px; width: 100%; height: 40px; padding: 0 !important; margin-top: 100px;">
+                    <button class="btn btn-primary py-3 px-5" id="modal-submit" style="font-size: 16px; font-weight: bold; border-radius: 4px; width: 100%; height: 40px; padding: 0 !important; margin-top: 100px;" disabled>
                       Submit
                     </button>
                   </div>
@@ -456,6 +456,11 @@
     </div>
 
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-migrate-3.0.1.min.js"></script>
+
+
     <!--Javascript to display optional text when "other" is chosen-->
     <script>
         const source = document.querySelector("#interested-career");
@@ -472,33 +477,42 @@
         source.addEventListener("change", (evt) =>
             displayWhenSelected(source, "other", target)
         );
+
+        //Prevents page from refreshing, do not delete!
+        document.querySelector('#subButton').addEventListener('click', function(event) {
+            event.preventDefault();
+        });
     </script>
 
-    <!--Javascript to open form when button is pressed-->
+    <!--Javascript to enable/disabled modal submit button-->
     <script>
+      function modal_change(){
 
-      // TODO: complete
+        document.querySelector('#modal-submit').disabled = true;
 
-      //Prevents page from refreshing, do not delete!
-      document.querySelector('#subButton').addEventListener('click', function(event) {
-          event.preventDefault();
-      });
+        if ($("#interested-career option:selected").text().localeCompare("Select") != 0) {
+          if ($("#occupation option:selected").text().localeCompare("Select") != 0) {
+            if ($.trim($('#email').val()).length > 0 ) {
+              if ($.trim($('#first-name').val()).length > 0 ) {
+                document.getElementById('modal-submit').disabled = false;
+              }
+            }
+          }
+        }
+      };
     </script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="js/jquery.min.js"></script>
-  <script src="js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery.easing.1.3.js"></script>
-  <script src="js/jquery.waypoints.min.js"></script>
-  <script src="js/jquery.stellar.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script src="js/aos.js"></script>
-  <script src="js/jquery.animateNumber.min.js"></script>
-  <script src="js/scrollax.min.js"></script>
-  <script src="js/main.js"></script>
-</body>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/jquery.animateNumber.min.js"></script>
+    <script src="js/scrollax.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
 
 </html>
