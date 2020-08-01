@@ -78,7 +78,7 @@
                 <form action="">
                   <div class="form-group">
                     <!-- <input type="text" class="form-control" placeholder="Enter your email address"> -->
-                    <button class="submit-btn-test" id="subButton" data-toggle="modal" data-target="#exampleModal" style="border: none; padding-left: 6%; padding-right: 6%; width: auto">Subscribe to the newsletter</button>
+                    <button class="submit-btn-test" id="subButton" data-toggle="modal" data-target="#subModal" style="border: none; padding-left: 6%; padding-right: 6%; width: auto">Subscribe to the newsletter</button>
                   </div>
                 </form>
               </div>
@@ -379,6 +379,74 @@
       </div>
     </footer>
 
+
+    <!-- Modal -->
+    <div class="modal fade" id="subModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content" style="border-radius: 20px">
+          <div class="modal-header" style="height: 210px; background-image: url('images/modalHeaderBG.png'); background-size: cover">
+            <div style="flex-direction:column;">
+               <h1 class="modal-title" style="font-size: 23px; font-weight: 700; color: white!important; margin-top: 7%; text-align: center; line-height:1.1; padding-left: 7%; padding-right: 9%">Subscribe to the Augment Newsletter!</h5>
+               <h2 style="font-size: 17px; color:white!important; margin-top: 10px; text-align: center; line-height: 1.2; padding-left: 7%; padding-right: 9%; font-size: 16px; font-weight: 600">Be the first to receive curated content on the tech industry and know when to RSVP to our latest remote events.</h2>
+            </div>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-left: -40px">
+              <span aria-hidden="true" style="color:white">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row block-9 no gutters">
+              <div class="col-lg-12 order-md-last">
+                <form id="modal-form" action="/action_page.php" style="padding-top: 10px;">
+                  <div class="form-group">
+                    <label for="first-name">
+                      <b class="form-text astrix">First Name</b>
+                    </label>
+                    <input type="text" id = "first-name" class="form-control" style = "height: 42px !important; font-size: 12px !important;" placeholder="ex: Jane" required>
+                  </div>
+                  <div class="form-group" style="margin-top: -9px !important;">
+                    <label for="email"><b class="form-text astrix">Email</b></label>
+                    <input type="text" id = "email" class="form-control" placeholder="email@example.com" style = "height: 42px !important; font-size: 12px !important;" required>
+                  </div>
+                  <div class="form-group" style="margin-top: -9px !important;">
+                    <label for="occupation"><b class="form-text astrix">Occupation</b></label>
+                    <select id="occupation" name="occupation" class="form-control" placeholder = "Select" style = "height: 42px !important;" required>
+                      <option value="" disabled selected>Select</option>
+                      <option value="high-school">I’m a high school student.</option>
+                      <option value="college-undergraduate">I’m a college undergraduate student.</option>
+                      <option value="college-graduate">I’m a college graduate student.</option>
+                      <option value="industry-professional">I’m an industry professional.</option>
+                    </select>
+                  </div>
+                  <div class="form-group" style="margin-top: -9px !important;">
+                    <label for="interested-career"><b class="form-text astrix">Interested Career Role in Tech</b></label>
+                    <select id="interested-career" name="interested-career" class="form-control"  style = "height: 42px !important;" required>
+                      <option value="" disabled selected style="font-size: 12px">Select</option>
+                      <option value="engineering">Engineering</option>
+                      <option value="UI/UX">UI/UX or Product Design</option>
+                      <option value="product-management">Product Management</option>
+                      <option value="other">Other</option>
+                      <option value="multiple-interests">I have multiple interests!</option>
+                      <option value="not-sure">I'm not sure yet.</option>
+                    </select>
+                  </div>
+                  <div class="form-group"  id="optional" style="position: absolute; margin-top: -9px !important; width: 95%;">
+                    <label for="career-role"><b class="form-text">What career roles are you interested in?</b></label>
+                    <input type="text" id = "career-role" class="form-control" style = "height: 42px !important; font-size: 12px !important;">
+                  </div>
+                  <div class="form-group" style="margin-top: -9px !important;">
+                    <button class="btn btn-primary py-3 px-5" disabled="disabled" id="modal-submit" style="font-size: 16px; font-weight: bold; border-radius: 4px; width: 100%; height: 40px; padding: 0 !important; margin-top: 100px;">
+                      Submit
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
     <!-- loader -->
     <div id="ftco-loader" class="show fullscreen">
       <svg class="circular" width="48px" height="48px">
@@ -386,6 +454,36 @@
         <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#6f32a8"/>
       </svg>
     </div>
+
+
+    <!--Javascript to display optional text when "other" is chosen-->
+    <script>
+        const source = document.querySelector("#interested-career");
+        const target = document.querySelector("#optional");
+
+        const displayWhenSelected = (source, value, target) => {
+        const selectedIndex = source.selectedIndex;
+        const isSelected = source[selectedIndex].value === value;
+        target.classList[isSelected
+                ? "add"
+                : "remove"
+            ]("show");
+        };
+        source.addEventListener("change", (evt) =>
+            displayWhenSelected(source, "other", target)
+        );
+    </script>
+
+    <!--Javascript to open form when button is pressed-->
+    <script>
+
+      // TODO: complete
+
+      //Prevents page from refreshing, do not delete!
+      document.querySelector('#subButton').addEventListener('click', function(event) {
+          event.preventDefault();
+      });
+    </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="js/jquery.min.js"></script>
