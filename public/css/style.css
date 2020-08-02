@@ -73,6 +73,10 @@ h1.landing-head {
   display: none;
 }
 
+.toggle-mobile {
+  display: none;
+}
+
 .overlay {
   height: 100%;
   width: 0;
@@ -142,7 +146,7 @@ h1 {
   .cta {
     display: none;
   }
-  .menu {
+  .menu, .toggle-mobile {
     display: initial;
   }
 }
@@ -665,3 +669,8 @@ h2.mb-4 {
   margin: 24px 0px;
   display:inline;
 }
+
+#mobile__menu {
+  display: none;
+}
+

@@ -1,0 +1,8 @@
+<div class="container" style="text-align: center;">
+    <% if (message && message.length > 0) { %>
+    <div class="alert <%= alertType %> alert-dismissible">
+        <span class="close" onclick="this.parentElement.style.display='none';">&times;</span>
+        <strong><%= message %> </strong>
+    </div>
+    <% } %>
+</div>

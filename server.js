@@ -1,10 +1,12 @@
 var express = require('express');
 var https = require('https');
+var path = require('path');
 var Mailchimp = require('mailchimp-api-v3');
 
 const bodyParser = require('body-parser');
 const request = require('request');
 const fetch = require('node-fetch');
+const ejs = require('ejs');
 
 require('dotenv').config();
 
@@ -15,13 +17,33 @@ const myList = process.env.MAILCHIMP_AUDIENCE_ID;
 
 var mailchimp = new Mailchimp(myKey);
 
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'ejs');
 app.set('port', (process.env.PORT || 8000));
 
 app.use(express.static('public'));
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + './index.html');
+	res.locals.message = "";
+	res.render('pages/index');
+});
+
+app.get('/about', (req, res) => {
+	res.render('pages/about');
+});
+
+app.get('/events', (req, res) => {
+	res.render('pages/events');
+});
+
+app.get('/articles', (req, res) => {
+	res.render('pages/articles');
+});
+
+app.get('/contact', (req, res) => {
+	res.render('pages/contact');
 });
 
 app.post('/submit-form', (req, res) => {
@@ -37,18 +59,22 @@ app.post('/submit-form', (req, res) => {
 	mailchimp.post(add_new_member)
 	.then(() => {
 		console.log(email + ' added to contact list');
-		res.redirect('/');
+		res.locals.message = "Thanks for subscribing!";
+		res.locals.alertType = "alert-success";
+		res.render('pages/index');
 	})
 	.catch((error) => {
 		console.log('Error: ', error.title);
 		console.log('Details: ', error.detail);
 		console.log('Status: ', error.status);
 		if (error.title === "Member Exists") {
-			// TODO: Implement page popup
-			res.redirect('/');
+			res.locals.message = "Member Exists Already!";
+			res.locals.alertType = "alert-warning";
+			res.render('pages/index');
 		} else {
-			// TODO: Implement page popup
-			res.redirect('/');
+			res.locals.message = "An error occurred. Try again.";
+			res.locals.alertType = "alert-danger";
+			res.redirect('pages/index');
 		}
 	})
 });

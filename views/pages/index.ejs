@@ -41,10 +41,10 @@
   <header style="justify-content: flex-end; padding-top: 2%;">
       <nav>
          <ul class="nav__links">
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="events.html">Events</a></li>
-            <li><a href="articles.html">Articles</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/events">Events</a></li>
+            <li><a href="/articles">Articles</a></li>
+            <li><a href="/contact">Contact Us</a></li>
          </ul>
       </nav>
       <p class="menu cta" style="margin:0">Menu</p>
@@ -53,26 +53,26 @@
   <div id="mobile__menu" class="overlay">
     <a class="close">&times;</a>
       <div class="overlay__content" style="white-space: nowrap">
-         <a href="about.html">About Us</a>
-         <a href="events.html">Events</a>
-         <a href="articles.html">Articles</a>
-         <a href="contact.html">Contact Us</a>
+         <a href="/about">About Us</a>
+         <a href="/events">Events</a>
+         <a href="/articles">Articles</a>
+         <a href="/contact">Contact Us</a>
       </div>
   </div>
 
 <!-- END NAV -->
 
   <body>
-
+    <%- include('../template/messages.ejs') -%>
     <section class="landing-area">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-6 order-lg-1">
             <div class="landing-content">
-  			  <p class="landing-subt1">Hey! Welcome to</p>
+          <p class="landing-subt1">Hey! Welcome to</p>
               <h1 class="landing-head">ΛUGMENT</h1>
-  			  <p class="landing-subt2">We’re a community of intern leaders who seek to help empower and elevate students all across the world.</p>
-  			  <p class="landing-subt1" style="padding-top: 25px; width: auto; padding-right: 20%; height: auto"><b>Elevate your career.</b> Be the first to know about career events and resources👇</p>
+          <p class="landing-subt2">We’re a community of intern leaders who seek to help empower and elevate students all across the world.</p>
+          <p class="landing-subt1" style="padding-top: 25px; width: auto; padding-right: 20%; height: auto"><b>Elevate your career.</b> Be the first to know about career events and resources👇</p>
               <div class="landing-form">
                 <form action="">
                   <div class="form-group">
@@ -83,13 +83,12 @@
               </div>
             </div>
           </div>
-  		<div class="col-lg-6 order-lg-2">
+          <div class="col-lg-6 order-lg-2">
             <div class="landing-image">
               <img class="landing-pic" src="images/landingPage_Graphic.png" alt="">
             </div>
           </div>
         </div>
-
       </div>
     </section>
 
@@ -99,7 +98,7 @@
           <div class="heading-section ftco-animate">
             <h2 class="mb-4" style="font-family: Poppins; font-style: normal; font-weight: bold; font-size: 28px; line-height: 42px; color: #000000; flex: none; order: 0; align-self: center; margin: 24px 0px; display:inline;">Events</h2>
             &nbsp; &nbsp; &nbsp;
-            <a href="events.html" style="font-family: Poppins; font-style: normal; font-weight: bold; font-size: 20px; line-height: 30px; display: flex; align-items: flex-end; text-decoration-line: underline; color: #673AA2; flex: none; order: 1; align-self: center; margin: 24px 0px; display:inline;">See all events ></a>
+            <a href="/events" style="font-family: Poppins; font-style: normal; font-weight: bold; font-size: 20px; line-height: 30px; display: flex; align-items: flex-end; text-decoration-line: underline; color: #673AA2; flex: none; order: 1; align-self: center; margin: 24px 0px; display:inline;">See all events ></a>
           </div>
         </div>
         <br>
@@ -186,7 +185,7 @@
           <div class="heading-section ftco-animate">
             <h2 class="mb-4" style="font-family: Poppins; font-style: normal; font-weight: bold; font-size: 28px; line-height: 42px; color: #000000; flex: none; order: 0; align-self: center; margin: 24px 0px; display:inline;">Articles</h2>
             &nbsp; &nbsp; &nbsp;
-            <a href="articles.html" style="font-family: Poppins; font-style: normal; font-weight: bold; font-size: 20px; line-height: 30px; display: flex; align-items: flex-end; text-decoration-line: underline; color: #673AA2; flex: none; order: 1; align-self: center; margin: 24px 0px; display:inline;">See all articles ></a>
+            <a href="/articles" style="font-family: Poppins; font-style: normal; font-weight: bold; font-size: 20px; line-height: 30px; display: flex; align-items: flex-end; text-decoration-line: underline; color: #673AA2; flex: none; order: 1; align-self: center; margin: 24px 0px; display:inline;">See all articles ></a>
           </div>
         </div>
         <br>
@@ -304,80 +303,7 @@
       </div>
     </section>
 
-    <footer class="ftco-footer ftco-bg-dark ftco-section">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-              <h2 class="logo"><a href="index.html">Λugment</a></h2>
-              <p style="color:white;">A community of intern leaders who seek to help empower and elevate students all across the world.</p>
-              <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
-                <li class="ftco-animate"><a href="https://www.linkedin.com/company/augment-official/"><span class="icon-linkedin"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Latest News</h2>
-              <div class="block-21 mb-4 d-flex">
-                <a class="img mr-4 rounded" style="background-image: url(images/guide.jpeg);"></a>
-                <div class="text">
-                  <h3 class="heading"><a href="articles.html" style="color:white;">A “How To Product Guide” for Machine Learning</a></h3>
-                  <div class="meta">
-                    <div><a href="articles.html"></span> June. 9, 2020</a></div>
-                    <div><a href="articles.html"></span> 6 min read</a></div>
-                  </div>
-                </div>
-              </div>
-              <div class="block-21 mb-4 d-flex">
-                <a class="img mr-4 rounded" style="background-image: url(images/tesla.jpeg);"></a>
-                <div class="text">
-                  <h3 class="heading"><a href="articles.html" style="color:white;">The Postmortem: Tesla (3/4)</a></h3>
-                  <div class="meta">
-                    <div><a href="articles.html"></span> May. 29, 2020</a></div>
-                    <div><a href="articles.html"></span> 9 min read</a></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4 ml-md-5">
-              <h2 class="ftco-heading-2">Information</h2>
-              <ul class="list-unstyled">
-                <li><a href="index.html" class="py-1 d-block"><span class="ion-ios-arrow-forward mr-3"></span>Home</a></li>
-                <!-- <li><a href="about.html" class="py-1 d-block"><span class="ion-ios-arrow-forward mr-3"></span>About</a></li> -->
-                <li><a href="articles.html" class="py-1 d-block"><span class="ion-ios-arrow-forward mr-3"></span>Articles</a></li>
-                <!-- <li><a href="events.html" class="py-1 d-block"><span class="ion-ios-arrow-forward mr-3"></span>Events</a></li> -->
-                <li><a href="videos.html" class="py-1 d-block"><span class="ion-ios-arrow-forward mr-3"></span>Videos</a></li>
-                <!-- <li><a href="podcasts.html" class="py-1 d-block"><span class="ion-ios-arrow-forward mr-3"></span>Podcasts</a></li> -->
-                <li><a href="contact.html" class="py-1 d-block"><span class="ion-ios-arrow-forward mr-3"></span>Contact</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Contact Us!</h2>
-              <div class="block-23 mb-3">
-                <ul>
-                  <li><span class="icon icon-map-marker"></span><span class="text" style="color:white;">Toronto, ON CA</span></li>
-                  <li><a href="#"><span class="icon icon-envelope"></span><span class="text">officialaugment@gmail.com</span></a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12 text-center">
-            <p style="color: white;">Copyright &copy;<script>document.write(new Date().getFullYear());</script> | All rights reserved | Λugment
-          </p>
-          </div>
-        </div>
-      </div>
-    </footer>
-
+    <%- include('../template/footer') -%>
 
     <!-- Modal -->
     <div class="modal fade" id="subModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">

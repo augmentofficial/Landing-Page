@@ -262,7 +262,9 @@
   });
 })(jQuery);
 
-
+$('.toggle-mobile').click(function() {
+	$('.overlay').toggleClass('hidden');
+});
 
 // TODO: Impelement LinkedIn API endpoints to get Posts
 // Request should be like: https://api.linkedin.com/v2/shares?q=owners&owners=urn:li:organization:10239645&oauth2_access_token=
