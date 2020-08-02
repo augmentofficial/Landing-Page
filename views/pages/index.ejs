@@ -47,11 +47,11 @@
             <li><a href="/contact">Contact Us</a></li>
          </ul>
       </nav>
-      <p class="menu cta" style="margin:0">Menu</p>
-  </header>
+      <p class="menu cta" style="margin:0" onclick="openMblMenu()">Menu</p>
+    </header>
 
-  <div id="mobile__menu" class="overlay">
-    <a class="close">&times;</a>
+    <div id="mobile__menu" class="overlay">
+        <a class="close" onclick="closeMblMenu()">&times;</a>
       <div class="overlay__content" style="white-space: nowrap">
          <a href="/about">About Us</a>
          <a href="/events">Events</a>
@@ -193,110 +193,46 @@
         <div class="row ftco-animate">
           <div class="col-md-12">
             <div class="carousel-testimony owl-carousel ftco-owl">
-              <div class="item">
-                <div class="testimony-wrap py-4">
-                  <div class="text">
-                    <div class="d-flex align-items-center">
-                      <div class="blog-entry justify-content-end" style="width: 392px;height:578px;">
-                        <a href="https://medium.com/augment-official/the-postmortem-tesla-3-4-84c8ea62815f?source=collection_home---4------0-----------------------" class="block-20" style="background-image: url('images/tesla.jpeg');width:392px;height:263px;">
-                        </a>
-                        <div class="text p-4 float-right d-block">
-                          <div class="topper d-flex align-items-center">
-                            <div class="one py-2 pl-3 pr-1 align-self-stretch">
-                              <span class="day" style="color: white;font-weight:400;">29</span>
-                            </div>
-                            <div class="two pl-0 pr-3 py-2 align-self-stretch">
-                              <span class="yr" style="color: white;">2020</span>
-                              <span class="mos" style="color: white;">May</span>
+              <% const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]; %>
+                <% if (blogItems && blogItems.length > 0) { %>
+                  <% for (var i=0; i<blogItems.length; i++) { %>
+                    <div class="item">
+                      <div class="testimony-wrap py-4">
+                        <div class="text">
+                          <div class="d-flex align-items-center">
+                            <div class="blog-entry justify-content-end" style="width: 392px;height:578px;">
+                              <a href="<%= blogItems[i].link %>" class="block-20" style="background-image: url('<%= blogItems[i].thumbnail %>');width:392px;height:263px;">
+                              </a>
+                              <div class="text p-4 float-right d-block">
+                                <div class="topper d-flex align-items-center">
+                                  <div class="one py-2 pl-3 pr-1 align-self-stretch">
+                                    <span class="day" style="color: white;font-weight:400;">
+                                      <%= blogItems[i].pubDate.substring(8, 10) %>
+                                      </span>
+                                  </div>
+                                  <div class="two pl-0 pr-3 py-2 align-self-stretch">
+                                    <span class="yr" style="color: white;">
+                                      <%= blogItems[i].pubDate.substring(0, 4) %>
+                                      </span>
+                                    <span class="mos" style="color: white;">
+                                      <%= monthNames[new Date(blogItems[i].pubDate).getMonth()] %>
+                                      </span>
+                                  </div>
+                                </div>
+                                <h3><a href="<%= blogItems[i].link %>" style="color:black;text-align:center;font-weight:bold;font-size:19px;"><%= blogItems[i].title %></a></h3>
+                                <p class="article-text"><strong>Tags:</strong>
+                                  <%= blogCategories[i] %>
+                                  </p>
+                                <p><a href="<%= blogItems[i].link %>" style="font-weight:bold;text-decoration:underline;">Read more ></a></p>
+                              </div>
                             </div>
                           </div>
-                          <h3><a href="https://medium.com/augment-official/the-postmortem-tesla-3-4-84c8ea62815f?source=collection_home---4------0-----------------------" style="color:black;text-align:center;font-weight:bold;font-size:19px;">The Postmortem: Tesla (3/4)</a></h3>
-                          <p class="article-text">Thoughts on 4 months as part of the Energy Products Software team at Tesla.</p>
-                          <p><a href="https://medium.com/augment-official/the-postmortem-tesla-3-4-84c8ea62815f?source=collection_home---4------0-----------------------" style="font-weight:bold;text-decoration:underline;">Read more (9 min read) ></a></p>
                         </div>
                       </div>
                     </div>
-                  </div>
+                   <% } %>
+                  <% } %>
                 </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap py-4">
-                  <div class="text">
-                    <div class="d-flex align-items-center">
-                      <div class="blog-entry justify-content-end" style="width: 392px;height:578px;">
-                        <a href="https://medium.com/augment-official/break-into-pm-from-a-non-tech-background-from-a-salesforce-pm-intern-marketing-major-f63fd04b8ce?source=collection_home---4------1-----------------------" class="block-20" style="background-image: url('images/grace.png');width:392px;height:263px;">
-                        </a>
-                        <div class="text p-4 float-right d-block">
-                          <div class="topper d-flex align-items-center">
-                            <div class="one py-2 pl-3 pr-1 align-self-stretch">
-                              <span class="day" style="color: white;font-weight:400;">28</span>
-                            </div>
-                            <div class="two pl-0 pr-3 py-2 align-self-stretch">
-                              <span class="yr" style="color: white;">2020</span>
-                              <span class="mos" style="color: white;">May</span>
-                            </div>
-                          </div>
-                          <h3><a href="https://medium.com/augment-official/break-into-pm-from-a-non-tech-background-from-a-salesforce-pm-intern-marketing-major-f63fd04b8ce?source=collection_home---4------1-----------------------" style="color:black;text-align:center;font-weight:bold;font-size:19px;">Break Into PM from a Non-Tech Background (from a Salesforce PM Intern & Marketing Major)</a></h3>
-                          <p class="article-text">As a Business Marketing major at Northeastern University, Current Product Manager Intern at Salesforce...</p>
-                          <p><a href="https://medium.com/augment-official/break-into-pm-from-a-non-tech-background-from-a-salesforce-pm-intern-marketing-major-f63fd04b8ce?source=collection_home---4------1-----------------------" style="font-weight:bold;text-decoration:underline;">Read more (21 min read) ></a></p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap py-4">
-                  <div class="text">
-                    <div class="d-flex align-items-center">
-                      <div class="blog-entry justify-content-end" style="width: 392px;height:578px;">
-                        <a href="https://medium.com/augment-official/succeeding-in-remote-internships-week-1-26bb48ae39f2" class="block-20" style="background-image: url('images/remote.jpeg');width:392px;height:263px;">
-                        </a>
-                        <div class="text p-4 float-right d-block">
-                          <div class="topper d-flex align-items-center">
-                            <div class="one py-2 pl-3 pr-1 align-self-stretch">
-                              <span class="day" style="color: white;font-weight:400;">18</span>
-                            </div>
-                            <div class="two pl-0 pr-3 py-2 align-self-stretch">
-                              <span class="yr" style="color: white;">2020</span>
-                              <span class="mos" style="color: white;">May</span>
-                            </div>
-                          </div>
-                          <h3><a href="https://medium.com/augment-official/succeeding-in-remote-internships-week-1-26bb48ae39f2" style="color:black;text-align:center;font-weight:bold;font-size:19px;">Succeeding in Remote Internships : Week 1 🏡</a></h3>
-                          <p class="article-text">Due to the COVID-19 pandemic, many companies have shifted to remote and virtual internships for this coming summer. Performing well in an in-person internship...</p>
-                          <p><a href="https://medium.com/augment-official/succeeding-in-remote-internships-week-1-26bb48ae39f2" style="font-weight:bold;text-decoration:underline;">Read more (4 min read) ></a></p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap py-4">
-                  <div class="text">
-                    <div class="d-flex align-items-center">
-                      <div class="blog-entry justify-content-end" style="width: 392px;height:578px;">
-                        <a href="https://medium.com/augment-official/a-how-to-product-guide-for-machine-learning-8538e6901f10?source=collection_home---4------0-----------------------" class="block-20" style="background-image: url('images/guide.jpeg');width:392px;height:263px;">
-                        </a>
-                        <div class="text p-4 float-right d-block">
-                          <div class="topper d-flex align-items-center">
-                            <div class="one py-2 pl-3 pr-1 align-self-stretch">
-                              <span class="day" style="color: white;font-weight:400;">09</span>
-                            </div>
-                            <div class="two pl-0 pr-3 py-2 align-self-stretch">
-                              <span class="yr" style="color: white;">2020</span>
-                              <span class="mos" style="color: white;">June</span>
-                            </div>
-                          </div>
-                          <h3><a href="https://medium.com/augment-official/a-how-to-product-guide-for-machine-learning-8538e6901f10?source=collection_home---4------0-----------------------" style="color:black;text-align:center;font-weight:bold;font-size:19px;">A “How To Product Guide” for Machine Learning</a></h3>
-                          <p class="article-text">Does it really change how a team works if the product involves machine learning?” The short answer is yes!</p>
-                          <p><a href="https://medium.com/augment-official/a-how-to-product-guide-for-machine-learning-8538e6901f10?source=collection_home---4------0-----------------------" style="font-weight:bold;text-decoration:underline;">Read more (6 min read) ></a></p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -435,6 +371,7 @@
     <script src="js/aos.js"></script>
     <script src="js/jquery.animateNumber.min.js"></script>
     <script src="js/scrollax.min.js"></script>
+    <script src="js/mobileMenu.js"></script>
     <script src="js/main.js"></script>
   </body>
 

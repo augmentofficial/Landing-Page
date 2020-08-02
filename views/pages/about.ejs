@@ -41,11 +41,11 @@
                 <li><a href="/contact">Contact Us</a></li>
             </ul>
         </nav>
-        <p class="menu cta" style="margin:0">Menu</p>
+        <p class="menu cta" style="margin:0" onclick="openMblMenu()">Menu</p>
     </header>
 
     <div id="mobile__menu" class="overlay">
-        <a class="close">&times;</a>
+        <a class="close" onclick="closeMblMenu()">&times;</a>
         <div class="overlay__content" style="white-space: nowrap">
             <a href="/about">About Us</a>
             <a style="font-weight:800; color:#D3D3D3">Events</a>
@@ -477,6 +477,7 @@
       <script src="js/aos.js"></script>
       <script src="js/jquery.animateNumber.min.js"></script>
       <script src="js/scrollax.min.js"></script>
+      <script src="js/mobileMenu.js"></script>
       <script src="js/main.js"></script>
   </body>
 </html>

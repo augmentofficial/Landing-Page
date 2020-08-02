@@ -8,6 +8,10 @@ const request = require('request');
 const fetch = require('node-fetch');
 const ejs = require('ejs');
 
+const cheerio = require('cheerio');
+
+const MongoClient = require('mongodb').MongoClient
+
 require('dotenv').config();
 
 var app = express();
@@ -25,11 +29,62 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
+MongoClient.connect('mongodb-connection-string', (err, client) => {
+  // ... do something here
+});
+
+function getMediumArticles() {
+	fetch('https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/augment-official')
+	.then((res) => res.json())
+	.then((data) => {
+		return data.items;
+	})
+	.catch((error) => {
+		return [];
+	});
+}
+
+
 // Alert Message Middleware
 function messages(req, res, next) {
-	var message;
+	var message, description;
 	res.locals.message = message;
-	next();
+	var items = [];
+	var itemsDescription = [];
+	var itemsCategories = [];
+	fetch('https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/augment-official')
+	.then((res) => res.json())
+	.then((data) => {
+		items = data.items;
+		items.forEach((element) => {
+			const $ = cheerio.load(element.content);
+			var pTags = $('p').html();
+			pTags = pTags.replace(/<br>/gi, "\n");
+			pTags = pTags.replace(/<p.*>/gi, "\n");
+			pTags = pTags.replace(/<a.*href="(.*?)".*>(.*?)<\/a>/gi, " $2 (Link->$1) ");
+			pTags = pTags.replace(/<(?:.|\s)*?>/g, "");
+			itemsDescription.push(pTags);
+
+			var tags = "";
+			var len = element.categories.length;
+			for (var i=0; i<len; i++) {
+				tags += element.categories[i];
+				if (i < len - 1) {
+					tags += ", ";
+				}
+			}
+			itemsCategories.push(tags);
+		});
+		res.locals.blogItems = items;
+		res.locals.blogCategories = itemsCategories;
+		next();
+	})
+	.catch((error) => {
+		console.log(error);
+		res.locals.blogItems = [];
+		res.locals.blogCategories = [];
+		next();
+	});
 }
 
 app.get('/', messages, (req, res) => {
@@ -44,7 +99,7 @@ app.get('/events', (req, res) => {
 	res.render('pages/events');
 });
 
-app.get('/articles', (req, res) => {
+app.get('/articles', messages, (req, res) => {
 	res.render('pages/articles');
 });
 
