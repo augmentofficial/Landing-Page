@@ -25,6 +25,7 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
+// Alert Message Middleware
 function messages(req, res, next) {
 	var message;
 	res.locals.message = message;
@@ -98,7 +99,7 @@ app.post('/submit-form', (req, res) => {
 				res.locals.message = "Invalid or fake email. Try again.";
 				res.locals.alertType = "alert-danger";
 			} else if (error.detail === "Your merge fields were invalid.") {
-				res.locals.message = "One of your inputs are invalid. Try again.";
+				res.locals.message = "Invalid input! Try again.";
 				res.locals.alertType = "alert-danger";
 			}
 			res.render('pages/index');
