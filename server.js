@@ -31,62 +31,22 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-async function insertNewPosts(client) {
+async function insertNewPosts(client, items) {
 	var dbo = client.db('medium-posts');
-	dbo.collection('medium-posts').insertOne({
-		title: "Succeeding in Remote Internships: Week 1 🏡",
-		pubDate: "2020-05-18 15:39:46",
-		link: "https://medium.com/augment-official/succeeding-in-remote-internships-week-1-26bb48ae39f2",
-		thumbnail: "https://miro.medium.com/max/700/1*P-dco2qglGfholE1FRYVwg.jpeg",
-		categories: ["remote", "intern", "project", "success"]
-	})
-	.then((result) => {
-		console.log("Successfully inserted medium post");
-	})
-	.catch((err) => {
-		console.log(err);
-	});
-
-	dbo.collection('medium-posts').insertOne({
-		title: "Drive and Passion: An Introduction",
-		pubDate: "2019-10-22 15:39:46",
-		link: "https://medium.com/augment-official/drive-and-passion-an-introduction-acbd7327dfd6",
-		thumbnail: "https://miro.medium.com/max/700/1*hX6lo5Bo30_E0YWMvg7LBA.jpeg",
-		categories: ["education", "schools", "growth", "interview", "passion"]
-	})
-	.then((result) => {
-		console.log("Successfully inserted medium post");
-	})
-	.catch((err) => {
-		console.log(err);
-	});
-
-	dbo.collection('medium-posts').insertOne({
-		title: "The 3 things that make a kick-ass Product Manager",
-		pubDate: "2020-05-14 15:39:46",
-		link: "https://medium.com/augment-official/the-3-things-that-make-a-kick-ass-product-manager-and-the-traits-you-need-in-order-to-become-one-3dd157d068eb",
-		thumbnail: "https://miro.medium.com/max/700/0*m-FRN2GaE4o9pb-e",
-		categories: ["product management", "technology", "career advice", "data", "business"]
-	})
-	.then((result) => {
-		console.log("Successfully inserted medium post");
-	})
-	.catch((err) => {
-		console.log(err);
-	});
-
-	dbo.collection('medium-posts').insertOne({
-		title: "Connecting passion and school in 3 stages",
-		pubDate: "2020-05-12 15:39:46",
-		link: "https://medium.com/augment-official/connecting-passion-and-school-in-3-stages-99c9e2f3dc84",
-		thumbnail: "https://miro.medium.com/max/700/1*IXoE65P5uWnGHK3s3-23NQ.jpeg",
-		categories: ["augment", "internships", "interview", "students", "hobby"]
-	})
-	.then((result) => {
-		console.log("Successfully inserted medium post");
-	})
-	.catch((err) => {
-		console.log(err);
+	items.forEach((item) => {
+		dbo.collection('medium-posts').insertOne({
+			title: item.title,
+			pubDate: item.pubDate,
+			link: item.link,
+			thumbnail: item.thumbnail,
+			categories: item.categories
+		})
+		.then((result) => {
+			console.log("Successfully inserted medium post");
+		})
+		.catch((err) => {
+			console.log(err);
+		});
 	});
 }
 
@@ -120,33 +80,6 @@ async function insertPosts(client, items) {
 	});
 }
 
-async function getPosts(client, ans) {
-	var dbo = client.db('medium-posts');
-	var cursor = dbo.collection('medium-posts').find({});
-	if (!cursor.count()) {
-		console.log("No medium posts found");
-		return [];
-	}
-	cursor.forEach(function(doc, err) {
-		ans.push(doc);
-	});
-	return ans;
-	/*
-	const test = await dbo.collection('medium-posts').find({}).toArray((err, results) => {
-		if (err) throw err;
-		if (results.length > 0) {
-			results.forEach((result, i) => {
-				console.log(result.title);
-			});
-			ans = results;
-			// console.log(results);
-		} else {
-			console.log("No medium posts found");
-		}
-	});
-	*/
-}
-
 // Alert Message Middleware
 function messages(req, res, next) {
 	var message, description;
@@ -167,7 +100,7 @@ function messages(req, res, next) {
 			});
 			try {
 				await client.connect();
-				// await insertNewPosts(client);
+				// await insertNewPosts(client, data.items);
 				await insertPosts(client, data.items);
 			} catch(err) {
 				console.log(err);
