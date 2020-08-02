@@ -194,8 +194,8 @@
           <div class="col-md-12">
             <div class="carousel-testimony owl-carousel ftco-owl">
               <% const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]; %>
-                <% if (blogItems && blogItems.length > 0) { %>
-                  <% for (var i=0; i<blogItems.length; i++) { %>
+                <% if (blogItems && blogItems.length >= 5) { %>
+                  <% for (var i=0; i<5; i++) { %>
                     <div class="item">
                       <div class="testimony-wrap py-4">
                         <div class="text">
