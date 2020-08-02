@@ -10,7 +10,8 @@ const ejs = require('ejs');
 
 const cheerio = require('cheerio');
 
-const MongoClient = require('mongodb').MongoClient
+const mongo = require('mongodb');
+const MongoClient = mongo.MongoClient;
 
 require('dotenv').config();
 
@@ -21,28 +22,71 @@ const myList = process.env.MAILCHIMP_AUDIENCE_ID;
 
 var mailchimp = new Mailchimp(myKey);
 
+
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs');
 app.set('port', (process.env.PORT || 8000));
 
 app.use(express.static('public'));
-app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
-MongoClient.connect('mongodb-connection-string', (err, client) => {
-});
-
-function getMediumArticles() {
-	fetch('https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/augment-official')
-	.then((res) => res.json())
-	.then((data) => {
-		return data.items;
-	})
-	.catch((error) => {
-		return [];
+async function insertPosts(client, items) {
+	var dbo = client.db('medium-posts');
+	// console.log(items);
+	items.forEach((item) => {
+		dbo.collection('medium-posts').find({title: item.title}, {limit: 1}).count()
+		.then((numItems) => {
+			// console.log(numItems);
+			if (!numItems) {
+				console.log("Inserting new post into database");
+				dbo.collection('medium-posts').insertOne({
+					title: item.title,
+					pubDate: item.pubDate,
+					link: item.link,
+					thumbnail: item.thumbnail,
+					categories: item.categories
+				})
+				.then((result) => {
+					console.log("Successfully inserted medium post");
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+			}
+		})
+		.catch((error) => {
+			console.log(error);
+		});
 	});
 }
 
+async function getPosts(client, ans) {
+	var dbo = client.db('medium-posts');
+	var cursor = dbo.collection('medium-posts').find({});
+	if (!cursor.count()) {
+		console.log("No medium posts found");
+		return [];
+	}
+	cursor.forEach(function(doc, err) {
+		ans.push(doc);
+	});
+	return ans;
+	/*
+	const test = await dbo.collection('medium-posts').find({}).toArray((err, results) => {
+		if (err) throw err;
+		if (results.length > 0) {
+			results.forEach((result, i) => {
+				console.log(result.title);
+			});
+			ans = results;
+			// console.log(results);
+		} else {
+			console.log("No medium posts found");
+		}
+	});
+	*/
+}
 
 // Alert Message Middleware
 function messages(req, res, next) {
@@ -54,29 +98,63 @@ function messages(req, res, next) {
 	fetch('https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/augment-official')
 	.then((res) => res.json())
 	.then((data) => {
-		items = data.items;
-		items.forEach((element) => {
-			const $ = cheerio.load(element.content);
-			var pTags = $('p').html();
-			pTags = pTags.replace(/<br>/gi, "\n");
-			pTags = pTags.replace(/<p.*>/gi, "\n");
-			pTags = pTags.replace(/<a.*href="(.*?)".*>(.*?)<\/a>/gi, " $2 (Link->$1) ");
-			pTags = pTags.replace(/<(?:.|\s)*?>/g, "");
-			itemsDescription.push(pTags);
+		// Insert new database entries
+		async function insert() {
+			const uri = process.env.MONGODB_URI;
 
-			var tags = "";
-			var len = element.categories.length;
-			for (var i=0; i<len; i++) {
-				tags += element.categories[i];
-				if (i < len - 1) {
-					tags += ", ";
-				}
+			const client = new MongoClient(uri, {
+				useNewUrlParser: true,
+				useUnifiedTopology: true
+			});
+			try {
+				await client.connect();
+				await insertPosts(client, data.items);
+			} catch(err) {
+				console.log(err);
 			}
-			itemsCategories.push(tags);
-		});
-		res.locals.blogItems = items;
-		res.locals.blogCategories = itemsCategories;
-		next();
+		}
+		insert().catch(console.error);
+
+		// Retrieve all database entries
+		async function retrieve() {
+			const uri = process.env.MONGODB_URI;
+			const client = new MongoClient(uri, {
+				useNewUrlParser: true,
+				useUnifiedTopology: true
+			});
+			try {
+				await client.connect();
+				var ans = [];
+				var dbo = client.db('medium-posts');
+				var cursor = dbo.collection('medium-posts').find({});
+				if (!cursor.count()) {
+					console.log("No medium posts found");
+					return;
+				}
+				cursor.forEach(function(doc, err) {
+					ans.push(doc);
+				}, function() {
+					client.close();
+					res.locals.blogItems = ans;
+					ans.forEach((elem) => {
+						var len = elem.categories.length;
+						var tags = "";
+						for (var i=0; i<len; i++) {
+							tags += elem.categories[i];
+							if (i < len - 1) {
+								tags += ", ";
+							}
+						}
+						itemsCategories.push(tags);
+					});
+					res.locals.blogCategories = itemsCategories;
+					next();
+				});
+			} catch(err) {
+				console.log(err);
+			}
+		}
+		retrieve().catch(console.error);
 	})
 	.catch((error) => {
 		console.log(error);

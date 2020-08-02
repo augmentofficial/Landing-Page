@@ -12,31 +12,28 @@
           </ul>
         </div>
       </div>
+
       <div class="col-md">
         <div class="ftco-footer-widget mb-4">
           <h2 class="ftco-heading-2">Latest News</h2>
-            <div class="block-21 mb-4 d-flex">
-              <a class="img mr-4 rounded" style="background-image: url(images/guide.jpeg);"></a>
-              <div class="text">
-                <h3 class="heading"><a href="/articles" style="color:white;">A “How To Product Guide” for Machine Learning</a></h3>
-                <div class="meta">
-                  <div><a href="/articles"></span> June. 9, 2020</a></div>
-                  <div><a href="/articles"></span> 6 min read</a></div>
+            <% const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]; %>
+            <% if (blogItems && blogItems.length >= 2) { %>
+              <% for (var i=0; i<2; i++) { %>
+                <div class="block-21 mb-4 d-flex">
+                  <a class="img mr-4 rounded" style="background-image: url('<%= blogItems[i].thumbnail %>');"></a>
+                  <div class="text">
+                    <h3 class="heading"><a href="/articles" style="color:white;"><%= blogItems[i].title.split(', ').slice(0, 10).join(' ') %></a></h3>
+                    <div class="meta">
+                      <div><a href="/articles"></span> June. 9, 2020</a></div>
+                      <div><a href="/articles"></span>Read more</a></div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div class="block-21 mb-4 d-flex">
-              <a class="img mr-4 rounded" style="background-image: url(images/tesla.jpeg);"></a>
-              <div class="text">
-                <h3 class="heading"><a href="/articles" style="color:white;">The Postmortem: Tesla (3/4)</a></h3>
-                <div class="meta">
-                  <div><a href="/articles"></span> May. 29, 2020</a></div>
-                  <div><a href="/articles"></span> 9 min read</a></div>
-                </div>
-              </div>
-            </div>
+              <% } %>
+            <% } %>
           </div>
         </div>
+
         <div class="col-md">
           <div class="ftco-footer-widget mb-4 ml-md-5">
             <h2 class="ftco-heading-2">Information</h2>
@@ -55,7 +52,7 @@
             <div class="block-23 mb-3">
               <ul>
               <li><span class="icon icon-map-marker"></span><span class="text" style="color:white;">Toronto, ON CA</span></li>
-              <li><a href="#"><span class="icon icon-envelope"></span><span class="text">officialaugment@gmail.com</span></a></li>
+              <li><a href="mailto: officialaugment@gmail.com" target="_blank"><span class="icon icon-envelope"></span><span class="text";>officialaugment@gmail.com</span></a></li>
             </ul>
           </div>
         </div>
