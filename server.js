@@ -25,8 +25,13 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-app.get('/', (req, res) => {
-	res.locals.message = "";
+function messages(req, res, next) {
+	var message;
+	res.locals.message = message;
+	next();
+}
+
+app.get('/', messages, (req, res) => {
 	res.render('pages/index');
 });
 
@@ -48,33 +53,59 @@ app.get('/contact', (req, res) => {
 
 app.post('/submit-form', (req, res) => {
 	var email = req.body.email
+	var firstName = req.body['first-name'];
+	var occupation = req.body.occupation;
+	var interestedCareer = req.body['interested-career'];
+	var careerRole = req.body['career-role'];
+	console.log('Email: ' + email);
+	console.log('First Name: ' + firstName);
+	console.log('Occupation: ' + occupation);
+	console.log('Interested Career: ' + interestedCareer);
+	console.log('Career Role: ' + careerRole);
+
 	var add_new_member = {
 		method: 'POST',
 		path: '/lists/' + myList + '/members',
 		body: {
 			email_address: email,
-			status: 'subscribed'
+			status: 'subscribed',
+			merge_fields: {
+				'FNAME': firstName,
+				'OCCUPATION': occupation,
+				'CAREER': interestedCareer,
+				'CAREERROLE': careerRole.length > 0 ? careerRole : "N/A"
+			}
 		}
 	}
+	console.log(add_new_member);
 	mailchimp.post(add_new_member)
 	.then(() => {
 		console.log(email + ' added to contact list');
-		res.locals.message = "Thanks for subscribing!";
+		res.locals.message = "Thanks for subscribing " + firstName + "!";
 		res.locals.alertType = "alert-success";
 		res.render('pages/index');
 	})
 	.catch((error) => {
-		console.log('Error: ', error.title);
-		console.log('Details: ', error.detail);
-		console.log('Status: ', error.status);
+		console.log('Error: ' + error.title);
+		console.log('Details: ' + error.detail);
+		console.log('Status: ' + error.status);
 		if (error.title === "Member Exists") {
-			res.locals.message = "Member Exists Already!";
+			res.locals.message = "You're already subscribed!";
 			res.locals.alertType = "alert-warning";
+			res.render('pages/index');
+		} else if (error.title === "Invalid Resource") {
+			if (error.detail.indexOf("looks fake or invalid") !== -1) {
+				res.locals.message = "Invalid or fake email. Try again.";
+				res.locals.alertType = "alert-danger";
+			} else if (error.detail === "Your merge fields were invalid.") {
+				res.locals.message = "One of your inputs are invalid. Try again.";
+				res.locals.alertType = "alert-danger";
+			}
 			res.render('pages/index');
 		} else {
 			res.locals.message = "An error occurred. Try again.";
 			res.locals.alertType = "alert-danger";
-			res.redirect('pages/index');
+			res.render('pages/index');
 		}
 	})
 });

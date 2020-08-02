@@ -321,20 +321,20 @@
           <div class="modal-body">
             <div class="row block-9 no gutters">
               <div class="col-lg-12 order-md-last">
-                <form id="modal-form" action="/action_page.php" style="padding-top: 10px;">
+                <form id="modal-form" method="POST" action="/submit-form" style="padding-top: 10px;">
                   <div class="form-group">
                     <label for="first-name">
                       <b class="form-text astrix">First Name</b>
                     </label>
-                    <input type="text" id = "first-name" onchange="modal_change()" class="form-control" style = "height: 42px !important; font-size: 12px !important;" placeholder="ex: Jane" required>
+                    <input type="text" name="first-name" id="first-name" onchange="modal_change()" class="form-control" style = "height: 42px !important; font-size: 12px !important;" placeholder="ex: Jane" required>
                   </div>
                   <div class="form-group" style="margin-top: -9px !important;">
                     <label for="email"><b class="form-text astrix">Email</b></label>
-                    <input type="text" id = "email" onchange="modal_change()" class="form-control" placeholder="email@example.com" style = "height: 42px !important; font-size: 12px !important;" required>
+                    <input type="email" name="email" id="email" onchange="modal_change()" class="form-control" placeholder="email@example.com" style = "height: 42px !important; font-size: 12px !important;" required>
                   </div>
                   <div class="form-group" style="margin-top: -9px !important;">
                     <label for="occupation"><b class="form-text astrix">Occupation</b></label>
-                    <select id="occupation" onchange="modal_change()" name="occupation" class="form-control" placeholder = "Select" style = "height: 42px !important;" required>
+                    <select name="occupation" id="occupation" onchange="modal_change()" name="occupation" class="form-control" placeholder = "Select" style = "height: 42px !important;" required>
                       <option value="" disabled selected>Select</option>
                       <option value="high-school">I’m a high school student.</option>
                       <option value="college-undergraduate">I’m a college undergraduate student.</option>
@@ -344,7 +344,7 @@
                   </div>
                   <div class="form-group" style="margin-top: -9px !important;">
                     <label for="interested-career"><b class="form-text astrix">Interested Career Role in Tech</b></label>
-                    <select id="interested-career" onchange="modal_change()" name="interested-career" class="form-control"  style = "height: 42px !important;" required>
+                    <select name="interested-career" id="interested-career" onchange="modal_change()" name="interested-career" class="form-control"  style = "height: 42px !important;" required>
                       <option value="" disabled selected style="font-size: 12px">Select</option>
                       <option value="engineering">Engineering</option>
                       <option value="UI/UX">UI/UX or Product Design</option>
@@ -356,7 +356,7 @@
                   </div>
                   <div class="form-group"  id="optional" style="position: absolute; margin-top: -9px !important; width: 95%;">
                     <label for="career-role"><b class="form-text">What career roles are you interested in?</b></label>
-                    <input type="text" id = "career-role" class="form-control" style = "height: 42px !important; font-size: 12px !important;">
+                    <input type="text" name="career-role" id="career-role" class="form-control" style="height: 42px !important; font-size: 12px !important;">
                   </div>
                   <div class="form-group" style="margin-top: -9px !important;">
                     <button class="btn btn-primary py-3 px-5" id="modal-submit" style="font-size: 16px; font-weight: bold; border-radius: 4px; width: 100%; height: 40px; padding: 0 !important; margin-top: 100px;" disabled>
@@ -412,9 +412,7 @@
     <!--Javascript to enable/disabled modal submit button-->
     <script>
       function modal_change(){
-
         document.querySelector('#modal-submit').disabled = true;
-
         if ($("#interested-career option:selected").text().localeCompare("Select") != 0) {
           if ($("#occupation option:selected").text().localeCompare("Select") != 0) {
             if ($.trim($('#email').val()).length > 0 ) {
