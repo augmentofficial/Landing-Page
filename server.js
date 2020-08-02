@@ -168,11 +168,11 @@ app.get('/', messages, (req, res) => {
 	res.render('pages/index');
 });
 
-app.get('/about', (req, res) => {
+app.get('/about', messages, (req, res) => {
 	res.render('pages/about');
 });
 
-app.get('/events', (req, res) => {
+app.get('/events', messages, (req, res) => {
 	res.render('pages/events');
 });
 
@@ -180,21 +180,16 @@ app.get('/articles', messages, (req, res) => {
 	res.render('pages/articles');
 });
 
-app.get('/contact', (req, res) => {
+app.get('/contact', messages, (req, res) => {
 	res.render('pages/contact');
 });
 
-app.post('/submit-form', (req, res) => {
+app.post('/submit-form', messages, (req, res) => {
 	var email = req.body.email
 	var firstName = req.body['first-name'];
 	var occupation = req.body.occupation;
 	var interestedCareer = req.body['interested-career'];
 	var careerRole = req.body['career-role'];
-	console.log('Email: ' + email);
-	console.log('First Name: ' + firstName);
-	console.log('Occupation: ' + occupation);
-	console.log('Interested Career: ' + interestedCareer);
-	console.log('Career Role: ' + careerRole);
 
 	var add_new_member = {
 		method: 'POST',
