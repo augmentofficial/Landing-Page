@@ -30,7 +30,6 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 MongoClient.connect('mongodb-connection-string', (err, client) => {
-  // ... do something here
 });
 
 function getMediumArticles() {
