@@ -69,6 +69,7 @@
 			margin: 30,
 			stagePadding: 0,
 			nav: true,
+			dots: false,
 			navText: ['<span class="ion-ios-arrow-back">', '<span class="ion-ios-arrow-forward">'],
 			responsive:{
 				0:{
@@ -93,6 +94,7 @@
 			margin: 30,
 			stagePadding: 0,
 			nav: true,
+			dots: false,
 			navText: ['<span class="ion-ios-arrow-back">', '<span class="ion-ios-arrow-forward">'],
 			responsive:{
 				0:{
