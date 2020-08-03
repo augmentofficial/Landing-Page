@@ -103,7 +103,7 @@ function messages(req, res, next) {
 
 			const client = new MongoClient(uri, {
 				useNewUrlParser: true,
-				// useUnifiedTopology: false
+				// useUnifiedTopology: true
 			});
 			try {
 				await client.connect();
@@ -120,7 +120,7 @@ function messages(req, res, next) {
 			const uri = process.env.MONGODB_URI;
 			const client = new MongoClient(uri, {
 				useNewUrlParser: true,
-				// useUnifiedTopology: false
+				// useUnifiedTopology: true
 			});
 			try {
 				await client.connect();
