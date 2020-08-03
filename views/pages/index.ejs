@@ -117,7 +117,7 @@
                           <i class="fa fa-clock-o" style="color: black;"></i>
                           July 2, 2020, 6:00PM - 7:00PM PDT
                         </p>
-                        <button class="events-button">RSVP &#8226; Less than 24 hours left!</button>
+                        <button class="events-button" onclick="location.href='/events';">RSVP &#8226; Less than 24 hours left!</button>
                       </div>
                     </div>
                   </div>
@@ -151,7 +151,7 @@
                           <i class="fa fa-clock-o" style="color: black;"></i>
                           July 2, 2020, 6:00PM - 7:00PM PDT
                         </p>
-                        <button class="events-button">RSVP Now</button>
+                        <button class="events-button" onclick="location.href='/events';">RSVP Now</button>
                       </div>
                     </div>
                   </div>
@@ -168,7 +168,7 @@
                           <i class="fa fa-clock-o" style="color: black;"></i>
                           July 2, 2020, 6:00PM - 7:00PM PDT
                         </p>
-                        <button class="events-button">RSVP Now</button>
+                        <button class="events-button" onclick="location.href='/events';">RSVP Now</button>
                       </div>
                     </div>
                   </div>
@@ -194,8 +194,8 @@
           <div class="col-md-12">
             <div class="carousel-testimony owl-carousel ftco-owl">
               <% const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]; %>
-                <% if (blogItems && blogItems.length >= 5) { %>
-                  <% for (var i=0; i<5; i++) { %>
+                <% if (blogItems && blogItems.length > 0) { %>
+                  <% for (var i=0; i<blogItems.length; i++) { %>
                     <div class="item">
                       <div class="testimony-wrap py-4">
                         <div class="text">

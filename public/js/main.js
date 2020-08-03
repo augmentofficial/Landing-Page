@@ -64,7 +64,7 @@
 
 	var carousel = function() {
 		$('.carousel-testimony').owlCarousel({
-			center: true,
+			center: false,
 			loop: true,
 			items:1,
 			margin: 30,
@@ -83,9 +83,32 @@
 				}
 			}
 		});
-
 	};
 	carousel();
+
+	var carousel1 = function() {
+		$('.carousel-testimony1').owlCarousel({
+			center: false,
+			loop: false,
+			items:1,
+			margin: 30,
+			stagePadding: 0,
+			nav: false,
+			navText: ['<span class="ion-ios-arrow-back">', '<span class="ion-ios-arrow-forward">'],
+			responsive:{
+				0:{
+					items: 1
+				},
+				600:{
+					items: 2
+				},
+				1000:{
+					items: 3
+				}
+			}
+		});
+	};
+	carousel1();
 
 	$('nav .dropdown').hover(function(){
 		var $this = $(this);
@@ -265,6 +288,30 @@
 $('.toggle-mobile').click(function() {
 	$('.overlay').toggleClass('hidden');
 });
+
+function expandSWEArticles() {
+  document.getElementById("SWE__row1").style.display = "block";
+  document.getElementById("SWE__row2").style.display = "block";
+  document.getElementById("SWE-landing-seeall").style.display = "none";
+}
+
+function expandPMArticles() {
+  document.getElementById("PM__row1").style.display = "block";
+  document.getElementById("PM__row2").style.display = "block";
+  document.getElementById("PM-landing-seeall").style.display = "none";
+}
+
+function expandDesignArticles() {
+  document.getElementById("design__row1").style.display = "block";
+  document.getElementById("design__row2").style.display = "block";
+  document.getElementById("design-landing-seeall").style.display = "none";
+}
+
+function expandInternArticles() {
+  document.getElementById("intern__row1").style.display = "block";
+  document.getElementById("intern__row2").style.display = "block";
+  document.getElementById("intern-landing-seeall").style.display = "none";
+}
 
 // TODO: Impelement LinkedIn API endpoints to get Posts
 // Request should be like: https://api.linkedin.com/v2/shares?q=owners&owners=urn:li:organization:10239645&oauth2_access_token=

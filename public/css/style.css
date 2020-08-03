@@ -669,3 +669,7 @@ h2.mb-4 {
   margin: 24px 0px;
   display:inline;
 }
+
+.events-button {
+  cursor: pointer;
+}

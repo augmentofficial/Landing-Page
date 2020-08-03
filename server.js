@@ -87,6 +87,13 @@ function messages(req, res, next) {
 	var items = [];
 	var itemsDescription = [];
 	var itemsCategories = [];
+
+	// Categorize posts
+	var swePosts = [];
+	var pmPosts = [];
+	var designPosts = [];
+	var internPosts = [];
+
 	fetch('https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/augment-official')
 	.then((res) => res.json())
 	.then((data) => {
@@ -96,7 +103,7 @@ function messages(req, res, next) {
 
 			const client = new MongoClient(uri, {
 				useNewUrlParser: true,
-				useUnifiedTopology: true
+				// useUnifiedTopology: false
 			});
 			try {
 				await client.connect();
@@ -113,7 +120,7 @@ function messages(req, res, next) {
 			const uri = process.env.MONGODB_URI;
 			const client = new MongoClient(uri, {
 				useNewUrlParser: true,
-				useUnifiedTopology: true
+				// useUnifiedTopology: false
 			});
 			try {
 				await client.connect();
@@ -131,16 +138,34 @@ function messages(req, res, next) {
 					res.locals.blogItems = ans;
 					ans.forEach((elem) => {
 						var len = elem.categories.length;
-						var tags = "";
+						var tags = elem.categories.slice(0, Math.min(elem.categories.length, 3)).join(', ');
 						for (var i=0; i<len; i++) {
-							tags += elem.categories[i];
-							if (i < len - 1) {
-								tags += ", ";
+							if (elem.categories[i].indexOf("design") === -1 && elem.categories[i].indexOf("software") !== -1) {
+								swePosts.push(elem);
+							}
+							if (elem.categories[i].indexOf("manage") !== -1) {
+								pmPosts.push(elem);
+							}
+							if (elem.categories[i].indexOf("design") !== -1) {
+								designPosts.push(elem);
+							}
+							if (elem.categories[i].indexOf("intern") !== -1) {
+								internPosts.push(elem);
 							}
 						}
 						itemsCategories.push(tags);
 					});
 					res.locals.blogCategories = itemsCategories;
+					// Remove duplicates, if any
+					swePosts = Array.from(new Set(swePosts.map(JSON.stringify)), JSON.parse);
+					pmPosts = Array.from(new Set(pmPosts.map(JSON.stringify)), JSON.parse);
+					designPosts = Array.from(new Set(designPosts.map(JSON.stringify)), JSON.parse);
+					internPosts = Array.from(new Set(internPosts.map(JSON.stringify)), JSON.parse);
+
+					res.locals.swePosts = swePosts;
+					res.locals.pmPosts = pmPosts;
+					res.locals.designPosts = designPosts;
+					res.locals.internPosts = internPosts;
 					next();
 				});
 			} catch(err) {
@@ -153,6 +178,10 @@ function messages(req, res, next) {
 		console.log(error);
 		res.locals.blogItems = [];
 		res.locals.blogCategories = [];
+		res.locals.swePosts = [];
+		res.locals.pmPosts = [];
+		res.locals.designPosts = [];
+		res.locals.internPosts = [];
 		next();
 	});
 }

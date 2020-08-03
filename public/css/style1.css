@@ -668,3 +668,11 @@ h2.mb-4 {
   margin: 24px 0px;
   display:inline;
 }
+
+#SWE__row1, #SWE__row2, #PM__row1, #PM__row2, #design__row1, #design__row2, #intern__row1, #intern__row2 {
+  display: none;
+}
+
+.events-button {
+  cursor: pointer;
+}

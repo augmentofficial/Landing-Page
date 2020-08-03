@@ -88,41 +88,36 @@
         <div class="col-md-12">
           <div class="carousel-testimony owl-carousel ftco-owl">
             <% const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]; %>
-            <% if (blogItems && blogItems.length > 0) { %>
-              <% cnt = 0; %>
-              <% for (var i=0; i<blogItems.length; i++) { %>
-                <% if (cnt < 3) { %>
-                  <% if (blogCategories[i].indexOf("design") === -1) { %>
-                  <% if (blogCategories[i].indexOf("software") !== -1) { %>
-                    <% cnt++; %>
+            <% if (swePosts && swePosts.length >= 3) { %>
+              <% for (var i=0; i<3; i++) { %>
                     <div class="item">
                         <div class="testimony-wrap py-4">
                           <div class="text">
                             <div class="d-flex align-items-center">
                               <div class="blog-entry justify-content-end" style="width: 392px;height:578px;">
-                                <a href="<%= blogItems[i].link %>" class="block-20" style="background-image: url('<%= blogItems[i].thumbnail %>');width:392px;height:263px;">
+                                <a href="<%= swePosts[i].link %>" class="block-20" style="background-image: url('<%= swePosts[i].thumbnail %>');width:392px;height:263px;">
                                 </a>
                                 <div class="text p-4 float-right d-block">
                                   <div class="topper d-flex align-items-center">
                                     <div class="one py-2 pl-3 pr-1 align-self-stretch">
                                       <span class="day" style="color: white;font-weight:400;">
-                                        <%= blogItems[i].pubDate.substring(8, 10) %>
+                                        <%= swePosts[i].pubDate.substring(8, 10) %>
                                         </span>
                                     </div>
                                     <div class="two pl-0 pr-3 py-2 align-self-stretch">
                                       <span class="yr" style="color: white;">
-                                        <%= blogItems[i].pubDate.substring(0, 4) %>
+                                        <%= swePosts[i].pubDate.substring(0, 4) %>
                                         </span>
                                       <span class="mos" style="color: white;">
-                                        <%= monthNames[new Date(blogItems[i].pubDate).getMonth()] %>
+                                        <%= monthNames[new Date(swePosts[i].pubDate).getMonth()] %>
                                         </span>
                                     </div>
                                   </div>
-                                  <h3><a href="<%= blogItems[i].link %>" style="color:black;text-align:center;font-weight:bold;font-size:19px;"><%= blogItems[i].title %></a></h3>
+                                  <h3><a href="<%= swePosts[i].link %>" style="color:black;text-align:center;font-weight:bold;font-size:19px;"><%= swePosts[i].title %></a></h3>
                                   <p class="article-text"><strong>Tags:</strong>
-                                    <%= blogCategories[i] %>
+                                    <%= swePosts[i].categories.slice(0, Math.min(swePosts[i].categories.length, 3)).join(', ') %>
                                     </p>
-                                  <p><a href="<%= blogItems[i].link %>" style="font-weight:bold;text-decoration:underline;">Read more ></a></p>
+                                  <p><a href="<%= swePosts[i].link %>" style="font-weight:bold;text-decoration:underline;">Read more ></a></p>
                                 </div>
                               </div>
                             </div>
@@ -131,18 +126,106 @@
                       </div>
                     <% } %>
                   <% } %>
-                <% } %>
-              <% } %>
-            <% } %>
+              </div>
+            </div>
+          </div>
+
+        <div class="row ftco-animate" id="SWE__row1">
+        <div class="col-md-12">
+          <div class="carousel-testimony1 owl-carousel ftco-owl">
+            <% if (swePosts && swePosts.length > 3) { %>
+              <% for (var i=3; i<swePosts.length; i++) { %>
+                    <div class="item">
+                        <div class="testimony-wrap py-4">
+                          <div class="text">
+                            <div class="d-flex align-items-center">
+                              <div class="blog-entry justify-content-end" style="width: 392px;height:578px;">
+                                <a href="<%= swePosts[i].link %>" class="block-20" style="background-image: url('<%= swePosts[i].thumbnail %>');width:392px;height:263px;">
+                                </a>
+                                <div class="text p-4 float-right d-block">
+                                  <div class="topper d-flex align-items-center">
+                                    <div class="one py-2 pl-3 pr-1 align-self-stretch">
+                                      <span class="day" style="color: white;font-weight:400;">
+                                        <%= swePosts[i].pubDate.substring(8, 10) %>
+                                        </span>
+                                    </div>
+                                    <div class="two pl-0 pr-3 py-2 align-self-stretch">
+                                      <span class="yr" style="color: white;">
+                                        <%= swePosts[i].pubDate.substring(0, 4) %>
+                                        </span>
+                                      <span class="mos" style="color: white;">
+                                        <%= monthNames[new Date(swePosts[i].pubDate).getMonth()] %>
+                                        </span>
+                                    </div>
+                                  </div>
+                                  <h3><a href="<%= swePosts[i].link %>" style="color:black;text-align:center;font-weight:bold;font-size:19px;"><%= swePosts[i].title %></a></h3>
+                                  <p class="article-text"><strong>Tags:</strong>
+                                    <%= swePosts[i].categories.slice(0, Math.min(swePosts[i].categories.length, 3)).join(', ') %>
+                                    </p>
+                                  <p><a href="<%= swePosts[i].link %>" style="font-weight:bold;text-decoration:underline;">Read more ></a></p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <% } %>
+                  <% } %>
+              </div>
+            </div>
+          </div>
+
+        <div class="row ftco-animate" id="SWE__row2">
+        <div class="col-md-12">
+          <div class="carousel-testimony1 owl-carousel ftco-owl">
+            <% if (swePosts && swePosts.length > 6) { %>
+              <% for (var i=6; i<swePosts.length; i++) { %>
+                    <div class="item">
+                        <div class="testimony-wrap py-4">
+                          <div class="text">
+                            <div class="d-flex align-items-center">
+                              <div class="blog-entry justify-content-end" style="width: 392px;height:578px;">
+                                <a href="<%= swePosts[i].link %>" class="block-20" style="background-image: url('<%= swePosts[i].thumbnail %>');width:392px;height:263px;">
+                                </a>
+                                <div class="text p-4 float-right d-block">
+                                  <div class="topper d-flex align-items-center">
+                                    <div class="one py-2 pl-3 pr-1 align-self-stretch">
+                                      <span class="day" style="color: white;font-weight:400;">
+                                        <%= swePosts[i].pubDate.substring(8, 10) %>
+                                        </span>
+                                    </div>
+                                    <div class="two pl-0 pr-3 py-2 align-self-stretch">
+                                      <span class="yr" style="color: white;">
+                                        <%= swePosts[i].pubDate.substring(0, 4) %>
+                                        </span>
+                                      <span class="mos" style="color: white;">
+                                        <%= monthNames[new Date(swePosts[i].pubDate).getMonth()] %>
+                                        </span>
+                                    </div>
+                                  </div>
+                                  <h3><a href="<%= swePosts[i].link %>" style="color:black;text-align:center;font-weight:bold;font-size:19px;"><%= swePosts[i].title %></a></h3>
+                                  <p class="article-text"><strong>Tags:</strong>
+                                    <%= swePosts[i].categories.slice(0, Math.min(swePosts[i].categories.length, 3)).join(', ') %>
+                                    </p>
+                                  <p><a href="<%= swePosts[i].link %>" style="font-weight:bold;text-decoration:underline;">Read more ></a></p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <% } %>
+                  <% } %>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
   <div class="div-for-events" style="height: auto; padding-bottom: 20px">
       <ul class="csl-head" style="text-align: center; margin-bottom: 0; padding: 0">
-  	    <a href="https://medium.com/augment-official" class="landing-seeall">View more SWE articles</a>
+  	    <a href="javascript:void(0)" onclick="expandSWEArticles()" id="SWE-landing-seeall">View more SWE articles</a>
   	</ul>
   </div>
 
@@ -158,59 +241,144 @@
       <div class="row ftco-animate">
         <div class="col-md-12">
           <div class="carousel-testimony owl-carousel ftco-owl">
-            <% if (blogItems && blogItems.length > 0) { %>
-              <% cnt = 0; %>
-              <% for (var i=0; i<blogItems.length; i++) { %>
-                <% if (cnt < 3) { %>
-                  <% if (blogCategories[i].indexOf("manage") !== -1) { %>
-                    <% cnt++; %>
-                  <div class="item">
-                      <div class="testimony-wrap py-4">
-                        <div class="text">
-                          <div class="d-flex align-items-center">
-                            <div class="blog-entry justify-content-end" style="width: 392px;height:578px;">
-                              <a href="<%= blogItems[i].link %>" class="block-20" style="background-image: url('<%= blogItems[i].thumbnail %>');width:392px;height:263px;">
-                              </a>
-                              <div class="text p-4 float-right d-block">
-                                <div class="topper d-flex align-items-center">
-                                  <div class="one py-2 pl-3 pr-1 align-self-stretch">
-                                    <span class="day" style="color: white;font-weight:400;">
-                                      <%= blogItems[i].pubDate.substring(8, 10) %>
-                                      </span>
+            <% if (pmPosts && pmPosts.length >= 3) { %>
+              <% for (var i=0; i<3; i++) { %>
+                    <div class="item">
+                        <div class="testimony-wrap py-4">
+                          <div class="text">
+                            <div class="d-flex align-items-center">
+                              <div class="blog-entry justify-content-end" style="width: 392px;height:578px;">
+                                <a href="<%= pmPosts[i].link %>" class="block-20" style="background-image: url('<%= pmPosts[i].thumbnail %>');width:392px;height:263px;">
+                                </a>
+                                <div class="text p-4 float-right d-block">
+                                  <div class="topper d-flex align-items-center">
+                                    <div class="one py-2 pl-3 pr-1 align-self-stretch">
+                                      <span class="day" style="color: white;font-weight:400;">
+                                        <%= pmPosts[i].pubDate.substring(8, 10) %>
+                                        </span>
+                                    </div>
+                                    <div class="two pl-0 pr-3 py-2 align-self-stretch">
+                                      <span class="yr" style="color: white;">
+                                        <%= pmPosts[i].pubDate.substring(0, 4) %>
+                                        </span>
+                                      <span class="mos" style="color: white;">
+                                        <%= monthNames[new Date(pmPosts[i].pubDate).getMonth()] %>
+                                        </span>
+                                    </div>
                                   </div>
-                                  <div class="two pl-0 pr-3 py-2 align-self-stretch">
-                                    <span class="yr" style="color: white;">
-                                      <%= blogItems[i].pubDate.substring(0, 4) %>
-                                      </span>
-                                    <span class="mos" style="color: white;">
-                                      <%= monthNames[new Date(blogItems[i].pubDate).getMonth()] %>
-                                      </span>
-                                  </div>
+                                  <h3><a href="<%= pmPosts[i].link %>" style="color:black;text-align:center;font-weight:bold;font-size:19px;"><%= pmPosts[i].title %></a></h3>
+                                  <p class="article-text"><strong>Tags:</strong>
+                                    <%= pmPosts[i].categories.slice(0, Math.min(pmPosts[i].categories.length, 3)).join(', ') %>
+                                    </p>
+                                  <p><a href="<%= pmPosts[i].link %>" style="font-weight:bold;text-decoration:underline;">Read more ></a></p>
                                 </div>
-                                <h3><a href="<%= blogItems[i].link %>" style="color:black;text-align:center;font-weight:bold;font-size:19px;"><%= blogItems[i].title %></a></h3>
-                                <p class="article-text"><strong>Tags:</strong>
-                                  <%= blogCategories[i] %>
-                                  </p>
-                                <p><a href="<%= blogItems[i].link %>" style="font-weight:bold;text-decoration:underline;">Read more ></a></p>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
+                    <% } %>
                   <% } %>
-                <% } %>
-              <% } %>
-            <% } %>
+              </div>
+            </div>
+          </div>
+
+        <div class="row ftco-animate" id="PM__row1">
+        <div class="col-md-12">
+          <div class="carousel-testimony1 owl-carousel ftco-owl">
+            <% if (pmPosts && pmPosts.length > 3) { %>
+              <% for (var i=3; i<pmPosts.length; i++) { %>
+                    <div class="item">
+                        <div class="testimony-wrap py-4">
+                          <div class="text">
+                            <div class="d-flex align-items-center">
+                              <div class="blog-entry justify-content-end" style="width: 392px;height:578px;">
+                                <a href="<%= pmPosts[i].link %>" class="block-20" style="background-image: url('<%= pmPosts[i].thumbnail %>');width:392px;height:263px;">
+                                </a>
+                                <div class="text p-4 float-right d-block">
+                                  <div class="topper d-flex align-items-center">
+                                    <div class="one py-2 pl-3 pr-1 align-self-stretch">
+                                      <span class="day" style="color: white;font-weight:400;">
+                                        <%= pmPosts[i].pubDate.substring(8, 10) %>
+                                        </span>
+                                    </div>
+                                    <div class="two pl-0 pr-3 py-2 align-self-stretch">
+                                      <span class="yr" style="color: white;">
+                                        <%= pmPosts[i].pubDate.substring(0, 4) %>
+                                        </span>
+                                      <span class="mos" style="color: white;">
+                                        <%= monthNames[new Date(pmPosts[i].pubDate).getMonth()] %>
+                                        </span>
+                                    </div>
+                                  </div>
+                                  <h3><a href="<%= pmPosts[i].link %>" style="color:black;text-align:center;font-weight:bold;font-size:19px;"><%= pmPosts[i].title %></a></h3>
+                                  <p class="article-text"><strong>Tags:</strong>
+                                    <%= pmPosts[i].categories.slice(0, Math.min(pmPosts[i].categories.length, 3)).join(', ') %>
+                                    </p>
+                                  <p><a href="<%= pmPosts[i].link %>" style="font-weight:bold;text-decoration:underline;">Read more ></a></p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <% } %>
+                  <% } %>
+              </div>
+            </div>
+          </div>
+
+        <div class="row ftco-animate" id="PM__row2">
+        <div class="col-md-12">
+          <div class="carousel-testimony1 owl-carousel ftco-owl">
+            <% if (pmPosts && pmPosts.length > 6) { %>
+              <% for (var i=6; i<swePosts.length; i++) { %>
+                    <div class="item">
+                        <div class="testimony-wrap py-4">
+                          <div class="text">
+                            <div class="d-flex align-items-center">
+                              <div class="blog-entry justify-content-end" style="width: 392px;height:578px;">
+                                <a href="<%= pmPosts[i].link %>" class="block-20" style="background-image: url('<%= pmPosts[i].thumbnail %>');width:392px;height:263px;">
+                                </a>
+                                <div class="text p-4 float-right d-block">
+                                  <div class="topper d-flex align-items-center">
+                                    <div class="one py-2 pl-3 pr-1 align-self-stretch">
+                                      <span class="day" style="color: white;font-weight:400;">
+                                        <%= pmPosts[i].pubDate.substring(8, 10) %>
+                                        </span>
+                                    </div>
+                                    <div class="two pl-0 pr-3 py-2 align-self-stretch">
+                                      <span class="yr" style="color: white;">
+                                        <%= pmPosts[i].pubDate.substring(0, 4) %>
+                                        </span>
+                                      <span class="mos" style="color: white;">
+                                        <%= monthNames[new Date(pmPosts[i].pubDate).getMonth()] %>
+                                        </span>
+                                    </div>
+                                  </div>
+                                  <h3><a href="<%= pmPosts[i].link %>" style="color:black;text-align:center;font-weight:bold;font-size:19px;"><%= pmPosts[i].title %></a></h3>
+                                  <p class="article-text"><strong>Tags:</strong>
+                                    <%= pmPosts[i].categories.slice(0, Math.min(pmPosts[i].categories.length, 3)).join(', ') %>
+                                    </p>
+                                  <p><a href="<%= pmPosts[i].link %>" style="font-weight:bold;text-decoration:underline;">Read more ></a></p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <% } %>
+                  <% } %>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
   <div class="div-for-events" style="height: auto; padding-bottom: 20px">
         <ul class="csl-head" style="text-align: center; margin-bottom: 0; padding: 0">
-    	    <a href="https://medium.com/augment-official" class="landing-seeall">View more PM articles</a>
+    	    <a href="javascript:void(0)" onclick="expandPMArticles()" id="PM-landing-seeall">View more PM articles</a>
     	</ul>
   </div>
 
@@ -226,59 +394,144 @@
       <div class="row ftco-animate">
         <div class="col-md-12">
           <div class="carousel-testimony owl-carousel ftco-owl">
-            <% if (blogItems && blogItems.length > 0) { %>
-              <% cnt = 0; %>
-              <% for (var i=0; i<blogItems.length; i++) { %>
-                <% if (cnt < 3) { %>
-                <% if (blogCategories[i].indexOf("design") !== -1) { %>
-                  <% cnt++; %>
-                  <div class="item">
-                      <div class="testimony-wrap py-4">
-                        <div class="text">
-                          <div class="d-flex align-items-center">
-                            <div class="blog-entry justify-content-end" style="width: 392px;height:578px;">
-                              <a href="<%= blogItems[i].link %>" class="block-20" style="background-image: url('<%= blogItems[i].thumbnail %>');width:392px;height:263px;">
-                              </a>
-                              <div class="text p-4 float-right d-block">
-                                <div class="topper d-flex align-items-center">
-                                  <div class="one py-2 pl-3 pr-1 align-self-stretch">
-                                    <span class="day" style="color: white;font-weight:400;">
-                                      <%= blogItems[i].pubDate.substring(8, 10) %>
-                                      </span>
+            <% if (designPosts && designPosts.length >= 3) { %>
+              <% for (var i=0; i<3; i++) { %>
+                    <div class="item">
+                        <div class="testimony-wrap py-4">
+                          <div class="text">
+                            <div class="d-flex align-items-center">
+                              <div class="blog-entry justify-content-end" style="width: 392px;height:578px;">
+                                <a href="<%= designPosts[i].link %>" class="block-20" style="background-image: url('<%= designPosts[i].thumbnail %>');width:392px;height:263px;">
+                                </a>
+                                <div class="text p-4 float-right d-block">
+                                  <div class="topper d-flex align-items-center">
+                                    <div class="one py-2 pl-3 pr-1 align-self-stretch">
+                                      <span class="day" style="color: white;font-weight:400;">
+                                        <%= designPosts[i].pubDate.substring(8, 10) %>
+                                        </span>
+                                    </div>
+                                    <div class="two pl-0 pr-3 py-2 align-self-stretch">
+                                      <span class="yr" style="color: white;">
+                                        <%= designPosts[i].pubDate.substring(0, 4) %>
+                                        </span>
+                                      <span class="mos" style="color: white;">
+                                        <%= monthNames[new Date(designPosts[i].pubDate).getMonth()] %>
+                                        </span>
+                                    </div>
                                   </div>
-                                  <div class="two pl-0 pr-3 py-2 align-self-stretch">
-                                    <span class="yr" style="color: white;">
-                                      <%= blogItems[i].pubDate.substring(0, 4) %>
-                                      </span>
-                                    <span class="mos" style="color: white;">
-                                      <%= monthNames[new Date(blogItems[i].pubDate).getMonth()] %>
-                                      </span>
-                                  </div>
+                                  <h3><a href="<%= designPosts[i].link %>" style="color:black;text-align:center;font-weight:bold;font-size:19px;"><%= designPosts[i].title %></a></h3>
+                                  <p class="article-text"><strong>Tags:</strong>
+                                    <%= designPosts[i].categories.slice(0, Math.min(designPosts[i].categories.length, 3)).join(', ') %>
+                                    </p>
+                                  <p><a href="<%= designPosts[i].link %>" style="font-weight:bold;text-decoration:underline;">Read more ></a></p>
                                 </div>
-                                <h3><a href="<%= blogItems[i].link %>" style="color:black;text-align:center;font-weight:bold;font-size:19px;"><%= blogItems[i].title %></a></h3>
-                                <p class="article-text"><strong>Tags:</strong>
-                                  <%= blogCategories[i] %>
-                                  </p>
-                                <p><a href="<%= blogItems[i].link %>" style="font-weight:bold;text-decoration:underline;">Read more ></a></p>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
+                    <% } %>
                   <% } %>
-                <% } %>
-              <% } %>
-            <% } %>
+              </div>
+            </div>
+          </div>
+
+        <div class="row ftco-animate" id="design__row1">
+        <div class="col-md-12">
+          <div class="carousel-testimony1 owl-carousel ftco-owl">
+            <% if (designPosts && designPosts.length > 3) { %>
+              <% for (var i=3; i<designPosts.length; i++) { %>
+                    <div class="item">
+                        <div class="testimony-wrap py-4">
+                          <div class="text">
+                            <div class="d-flex align-items-center">
+                              <div class="blog-entry justify-content-end" style="width: 392px;height:578px;">
+                                <a href="<%= designPosts[i].link %>" class="block-20" style="background-image: url('<%= designPosts[i].thumbnail %>');width:392px;height:263px;">
+                                </a>
+                                <div class="text p-4 float-right d-block">
+                                  <div class="topper d-flex align-items-center">
+                                    <div class="one py-2 pl-3 pr-1 align-self-stretch">
+                                      <span class="day" style="color: white;font-weight:400;">
+                                        <%= designPosts[i].pubDate.substring(8, 10) %>
+                                        </span>
+                                    </div>
+                                    <div class="two pl-0 pr-3 py-2 align-self-stretch">
+                                      <span class="yr" style="color: white;">
+                                        <%= designPosts[i].pubDate.substring(0, 4) %>
+                                        </span>
+                                      <span class="mos" style="color: white;">
+                                        <%= monthNames[new Date(designPosts[i].pubDate).getMonth()] %>
+                                        </span>
+                                    </div>
+                                  </div>
+                                  <h3><a href="<%= designPosts[i].link %>" style="color:black;text-align:center;font-weight:bold;font-size:19px;"><%= designPosts[i].title %></a></h3>
+                                  <p class="article-text"><strong>Tags:</strong>
+                                    <%= designPosts[i].categories.slice(0, Math.min(designPosts[i].categories.length, 3)).join(', ') %>
+                                    </p>
+                                  <p><a href="<%= designPosts[i].link %>" style="font-weight:bold;text-decoration:underline;">Read more ></a></p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <% } %>
+                  <% } %>
+              </div>
+            </div>
+          </div>
+
+        <div class="row ftco-animate" id="design__row2">
+        <div class="col-md-12">
+          <div class="carousel-testimony1 owl-carousel ftco-owl">
+            <% if (designPosts && designPosts.length > 6) { %>
+              <% for (var i=6; i<swePosts.length; i++) { %>
+                    <div class="item">
+                        <div class="testimony-wrap py-4">
+                          <div class="text">
+                            <div class="d-flex align-items-center">
+                              <div class="blog-entry justify-content-end" style="width: 392px;height:578px;">
+                                <a href="<%= designPosts[i].link %>" class="block-20" style="background-image: url('<%= designPosts[i].thumbnail %>');width:392px;height:263px;">
+                                </a>
+                                <div class="text p-4 float-right d-block">
+                                  <div class="topper d-flex align-items-center">
+                                    <div class="one py-2 pl-3 pr-1 align-self-stretch">
+                                      <span class="day" style="color: white;font-weight:400;">
+                                        <%= designPosts[i].pubDate.substring(8, 10) %>
+                                        </span>
+                                    </div>
+                                    <div class="two pl-0 pr-3 py-2 align-self-stretch">
+                                      <span class="yr" style="color: white;">
+                                        <%= designPosts[i].pubDate.substring(0, 4) %>
+                                        </span>
+                                      <span class="mos" style="color: white;">
+                                        <%= monthNames[new Date(designPosts[i].pubDate).getMonth()] %>
+                                        </span>
+                                    </div>
+                                  </div>
+                                  <h3><a href="<%= designPosts[i].link %>" style="color:black;text-align:center;font-weight:bold;font-size:19px;"><%= designPosts[i].title %></a></h3>
+                                  <p class="article-text"><strong>Tags:</strong>
+                                    <%= designPosts[i].categories.slice(0, Math.min(designPosts[i].categories.length, 3)).join(', ') %>
+                                    </p>
+                                  <p><a href="<%= designPosts[i].link %>" style="font-weight:bold;text-decoration:underline;">Read more ></a></p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <% } %>
+                  <% } %>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
   <div class="div-for-events" style="height: auto; padding-bottom: 20px">
     <ul class="csl-head" style="text-align: center; margin-bottom: 0; padding: 0">
-      <a href="https://medium.com/augment-official" class="landing-seeall">View more Design articles</a>
+      <a href="javascript:void(0)" onclick="expandDesignArticles()" id="design-landing-seeall">View more Design articles</a>
     </ul>
   </div>
 
@@ -294,60 +547,144 @@
       <div class="row ftco-animate">
         <div class="col-md-12">
           <div class="carousel-testimony owl-carousel ftco-owl">
-            <% if (blogItems && blogItems.length > 0) { %>
-              <% cnt = 0; %>
-              <% for (var i=0; i<blogItems.length; i++) { %>
-                <% if (cnt < 3) { %>
-                <% if (blogCategories[i].indexOf("intern") !== -1) { 
-                %>
-                  <% cnt++; %>
-                  <div class="item">
-                      <div class="testimony-wrap py-4">
-                        <div class="text">
-                          <div class="d-flex align-items-center">
-                            <div class="blog-entry justify-content-end" style="width: 392px;height:578px;">
-                              <a href="<%= blogItems[i].link %>" class="block-20" style="background-image: url('<%= blogItems[i].thumbnail %>');width:392px;height:263px;">
-                              </a>
-                              <div class="text p-4 float-right d-block">
-                                <div class="topper d-flex align-items-center">
-                                  <div class="one py-2 pl-3 pr-1 align-self-stretch">
-                                    <span class="day" style="color: white;font-weight:400;">
-                                      <%= blogItems[i].pubDate.substring(8, 10) %>
-                                      </span>
+            <% if (internPosts && internPosts.length >= 3) { %>
+              <% for (var i=0; i<3; i++) { %>
+                    <div class="item">
+                        <div class="testimony-wrap py-4">
+                          <div class="text">
+                            <div class="d-flex align-items-center">
+                              <div class="blog-entry justify-content-end" style="width: 392px;height:578px;">
+                                <a href="<%= internPosts[i].link %>" class="block-20" style="background-image: url('<%= internPosts[i].thumbnail %>');width:392px;height:263px;">
+                                </a>
+                                <div class="text p-4 float-right d-block">
+                                  <div class="topper d-flex align-items-center">
+                                    <div class="one py-2 pl-3 pr-1 align-self-stretch">
+                                      <span class="day" style="color: white;font-weight:400;">
+                                        <%= internPosts[i].pubDate.substring(8, 10) %>
+                                        </span>
+                                    </div>
+                                    <div class="two pl-0 pr-3 py-2 align-self-stretch">
+                                      <span class="yr" style="color: white;">
+                                        <%= internPosts[i].pubDate.substring(0, 4) %>
+                                        </span>
+                                      <span class="mos" style="color: white;">
+                                        <%= monthNames[new Date(internPosts[i].pubDate).getMonth()] %>
+                                        </span>
+                                    </div>
                                   </div>
-                                  <div class="two pl-0 pr-3 py-2 align-self-stretch">
-                                    <span class="yr" style="color: white;">
-                                      <%= blogItems[i].pubDate.substring(0, 4) %>
-                                      </span>
-                                    <span class="mos" style="color: white;">
-                                      <%= monthNames[new Date(blogItems[i].pubDate).getMonth()] %>
-                                      </span>
-                                  </div>
+                                  <h3><a href="<%= internPosts[i].link %>" style="color:black;text-align:center;font-weight:bold;font-size:19px;"><%= internPosts[i].title %></a></h3>
+                                  <p class="article-text"><strong>Tags:</strong>
+                                    <%= internPosts[i].categories.slice(0, Math.min(internPosts[i].categories.length, 3)).join(', ') %>
+                                    </p>
+                                  <p><a href="<%= internPosts[i].link %>" style="font-weight:bold;text-decoration:underline;">Read more ></a></p>
                                 </div>
-                                <h3><a href="<%= blogItems[i].link %>" style="color:black;text-align:center;font-weight:bold;font-size:19px;"><%= blogItems[i].title %></a></h3>
-                                <p class="article-text"><strong>Tags:</strong>
-                                  <%= blogCategories[i] %>
-                                  </p>
-                                <p><a href="<%= blogItems[i].link %>" style="font-weight:bold;text-decoration:underline;">Read more ></a></p>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
+                    <% } %>
                   <% } %>
-                <% } %>
-              <% } %>
-            <% } %>
+              </div>
+            </div>
+          </div>
+
+        <div class="row ftco-animate" id="intern__row1">
+        <div class="col-md-12">
+          <div class="carousel-testimony1 owl-carousel ftco-owl">
+            <% if (internPosts && internPosts.length > 3) { %>
+              <% for (var i=3; i<designPosts.length; i++) { %>
+                    <div class="item">
+                        <div class="testimony-wrap py-4">
+                          <div class="text">
+                            <div class="d-flex align-items-center">
+                              <div class="blog-entry justify-content-end" style="width: 392px;height:578px;">
+                                <a href="<%= internPosts[i].link %>" class="block-20" style="background-image: url('<%= internPosts[i].thumbnail %>');width:392px;height:263px;">
+                                </a>
+                                <div class="text p-4 float-right d-block">
+                                  <div class="topper d-flex align-items-center">
+                                    <div class="one py-2 pl-3 pr-1 align-self-stretch">
+                                      <span class="day" style="color: white;font-weight:400;">
+                                        <%= internPosts[i].pubDate.substring(8, 10) %>
+                                        </span>
+                                    </div>
+                                    <div class="two pl-0 pr-3 py-2 align-self-stretch">
+                                      <span class="yr" style="color: white;">
+                                        <%= internPosts[i].pubDate.substring(0, 4) %>
+                                        </span>
+                                      <span class="mos" style="color: white;">
+                                        <%= monthNames[new Date(internPosts[i].pubDate).getMonth()] %>
+                                        </span>
+                                    </div>
+                                  </div>
+                                  <h3><a href="<%= internPosts[i].link %>" style="color:black;text-align:center;font-weight:bold;font-size:19px;"><%= internPosts[i].title %></a></h3>
+                                  <p class="article-text"><strong>Tags:</strong>
+                                    <%= internPosts[i].categories.slice(0, Math.min(internPosts[i].categories.length, 3)).join(', ')  %>
+                                    </p>
+                                  <p><a href="<%= internPosts[i].link %>" style="font-weight:bold;text-decoration:underline;">Read more ></a></p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <% } %>
+                  <% } %>
+              </div>
+            </div>
+          </div>
+
+        <div class="row ftco-animate" id="intern__row2">
+        <div class="col-md-12">
+          <div class="carousel-testimony1 owl-carousel ftco-owl">
+            <% if (internPosts && internPosts.length > 6) { %>
+              <% for (var i=6; i<swePosts.length; i++) { %>
+                    <div class="item">
+                        <div class="testimony-wrap py-4">
+                          <div class="text">
+                            <div class="d-flex align-items-center">
+                              <div class="blog-entry justify-content-end" style="width: 392px;height:578px;">
+                                <a href="<%= internPosts[i].link %>" class="block-20" style="background-image: url('<%= internPosts[i].thumbnail %>');width:392px;height:263px;">
+                                </a>
+                                <div class="text p-4 float-right d-block">
+                                  <div class="topper d-flex align-items-center">
+                                    <div class="one py-2 pl-3 pr-1 align-self-stretch">
+                                      <span class="day" style="color: white;font-weight:400;">
+                                        <%= internPosts[i].pubDate.substring(8, 10) %>
+                                        </span>
+                                    </div>
+                                    <div class="two pl-0 pr-3 py-2 align-self-stretch">
+                                      <span class="yr" style="color: white;">
+                                        <%= internPosts[i].pubDate.substring(0, 4) %>
+                                        </span>
+                                      <span class="mos" style="color: white;">
+                                        <%= monthNames[new Date(internPosts[i].pubDate).getMonth()] %>
+                                        </span>
+                                    </div>
+                                  </div>
+                                  <h3><a href="<%= internPosts[i].link %>" style="color:black;text-align:center;font-weight:bold;font-size:19px;"><%= internPosts[i].title %></a></h3>
+                                  <p class="article-text"><strong>Tags:</strong>
+                                    <%= internPosts[i].categories.slice(0, Math.min(internPosts[i].categories.length, 3)).join(', ')  %>
+                                    </p>
+                                  <p><a href="<%= internPosts[i].link %>" style="font-weight:bold;text-decoration:underline;">Read more ></a></p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <% } %>
+                  <% } %>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
   <div class="div-for-events" style="height: auto; padding-bottom: 75px">
     <ul class="csl-head" style="text-align: center; margin-bottom: 0; padding: 0">
-       <a href="https://medium.com/augment-official" class="landing-seeall">View more articles on Internships & Networking</a>
+       <a href="javascript:void(0)" onclick="expandInternArticles()" id="intern-landing-seeall">View more articles on Internships & Networking</a>
     </ul>
   </div>
 
