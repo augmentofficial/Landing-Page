@@ -72,11 +72,10 @@
           <p class="landing-subt1">Hey! Welcome to</p>
               <h1 class="landing-head">ΛUGMENT</h1>
           <p class="landing-subt2">We’re a community of intern leaders who seek to help empower and elevate students all across the world.</p>
-          <p class="landing-subt1" style="padding-top: 25px; width: auto; padding-right: 20%; height: auto"><b>Elevate your career.</b> Be the first to know about career events and resources👇</p>
+          <p class="landing-subt1" style="padding-top: 25px; width: auto; padding-right: 20%; height: auto"><b>Elevate your career.</b> Be the first to know about career events and resources 👇</p>
               <div class="landing-form">
                 <form action="">
                   <div class="form-group">
-                    <!-- <input type="text" class="form-control" placeholder="Enter your email address"> -->
                     <button class="submit-btn-test" id="subButton" data-toggle="modal" data-target="#subModal" style="border: none; padding-left: 6%; padding-right: 6%; width: auto">Subscribe to the newsletter</button>
                   </div>
                 </form>
@@ -246,7 +245,7 @@
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content" style="border-radius: 20px">
           <div class="modal-header" style="height: 210px; background-image: url('images/modalHeaderBG.png'); background-size: cover">
-            <div style="flex-direction:column;">
+            <div style="flex-direction: column;">
                <h1 class="modal-title" style="font-size: 23px; font-weight: 700; color: white!important; margin-top: 7%; text-align: center; line-height:1.1; padding-left: 7%; padding-right: 9%">Subscribe to the Augment Newsletter!</h5>
                <h2 style="font-size: 17px; color:white!important; margin-top: 10px; text-align: center; line-height: 1.2; padding-left: 7%; padding-right: 9%; font-size: 16px; font-weight: 600">Be the first to receive curated content on the tech industry and know when to RSVP to our latest remote events.</h2>
             </div>
@@ -328,18 +327,18 @@
         const target = document.querySelector("#optional");
 
         const displayWhenSelected = (source, value, target) => {
-        const selectedIndex = source.selectedIndex;
-        const isSelected = source[selectedIndex].value === value;
-        target.classList[isSelected
-                ? "add"
-                : "remove"
-            ]("show");
+          const selectedIndex = source.selectedIndex;
+          const isSelected = source[selectedIndex].value === value;
+          target.classList[isSelected
+                  ? "add"
+                  : "remove"
+              ]("show");
         };
         source.addEventListener("change", (evt) =>
             displayWhenSelected(source, "other", target)
         );
 
-        //Prevents page from refreshing, do not delete!
+        // Prevents page from refreshing, do not delete!
         document.querySelector('#subButton').addEventListener('click', function(event) {
             event.preventDefault();
         });

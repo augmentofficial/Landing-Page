@@ -676,3 +676,7 @@ h2.mb-4 {
 .events-button {
   cursor: pointer;
 }
+
+#events__row1, #events__row2 {
+  display: none;
+}

@@ -314,6 +314,12 @@ function expandInternArticles() {
   document.getElementById("intern-landing-seeall").style.display = "none";
 }
 
+function expandEvents() {
+	document.getElementById("events__row1").style.display = "block";
+	document.getElementById("events__row2").style.display = "block";
+	document.getElementById("events-landing-seeall").style.display = "none";
+}
+
 // TODO: Impelement LinkedIn API endpoints to get Posts
 // Request should be like: https://api.linkedin.com/v2/shares?q=owners&owners=urn:li:organization:10239645&oauth2_access_token=
 /*

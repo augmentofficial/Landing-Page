@@ -9,6 +9,7 @@
             <li class="ftco-animate"><a href="https://www.linkedin.com/company/augment-official/"><span class="icon-linkedin"></span></a></li>
             <!-- <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li> -->
             <li class="ftco-animate"><a href="https://www.instagram.com/officialaugment/"><span class="icon-instagram"></span></a></li>
+            <li class="ftco-animate"><a href="https://medium.com/augment-official/"><span class="icon-medium"></span></a></li>
           </ul>
         </div>
       </div>
@@ -22,10 +23,10 @@
                 <div class="block-21 mb-4 d-flex">
                   <a class="img mr-4 rounded" style="background-image: url('<%= blogItems[i].thumbnail %>');"></a>
                   <div class="text">
-                    <h3 class="heading"><a href="/articles" style="color:white;"><%= blogItems[i].title.split(', ').slice(0, 10).join(' ') %></a></h3>
+                    <h3 class="heading"><a href="<%= blogItems[i].link %>" style="color:white;"><%= blogItems[i].title.split(', ').slice(0, 10).join(' ') %></a></h3>
                     <div class="meta">
-                      <div><a href="/articles"></span> June. 9, 2020</a></div>
-                      <div><a href="/articles"></span>Read more</a></div>
+                      <div><a href="<%= blogItems[i].link %>"><span><%= monthNames[new Date(blogItems[i].pubDate).getMonth()] %> <%= blogItems[i].pubDate.substring(8, 10) %>, <%= blogItems[i].pubDate.substring(0, 4) %></a></div>
+                      <div><a href="<%= blogItems[i].link %>"></span>Read more</a></div>
                     </div>
                   </div>
                 </div>
