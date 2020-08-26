@@ -1,0 +1,138 @@
+.card {
+  border: 1px solid #DCDCDC;
+  position: absolute;
+  width: 392px;
+  height: 380px;
+  left: 80px;
+  top: 478px;
+
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+
+  background: #FFFFFF;
+
+}
+
+.header {
+  position: static;
+  width: 360px;
+  height: 60px;
+  left: 0px;
+  top: 0px;
+
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 30px;
+
+  color: #000000;
+
+
+  /* Inside Auto Layout */
+  flex: none;
+  order: 0;
+  align-self: center;
+  margin: 0px 12px;
+
+}
+
+.secondary {
+  position: static;
+  width: 336px;
+  height: 24px;
+  left: 22px;
+  top: 0px;
+  
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  /* identical to box height */
+  
+  color: #000000;
+  
+  flex: none;
+  order: 1;
+  align-self: center;
+  margin: 6px 0px;    
+
+}
+
+.pcard {
+  border: 1px solid #FFFFFF;
+  position: absolute;
+  width: 392px;
+  height: 380px;
+  left: 80px;
+  top: 1003px;
+
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+
+}
+
+.bg-img {
+  background-size: cover;  
+  min-height: 196px;
+  border-radius: 8px 8px 0px 0px;
+  width:100%;
+  background-position: center;
+  background-color: #FFFFFF;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  padding: 0px;
+  
+  position: absolute;
+  width: 360px;
+  height: 96px;
+  left: 16px;
+  top: 212px;
+}
+
+button {
+  background: #673AA2;
+  border: 1px;
+  padding: .5rem 1rem;
+  cursor: pointer;
+  border-radius: 8px;
+  position: absolute;
+  width: 360px;
+  height: 40px;
+  left: 16px;
+  top: 324px;
+
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+  color: #FFFFFF;
+
+}
+
+.icon {
+  position: static;
+  width: 16px;
+  height: 16px;
+  left: 0px;
+  position: relative;
+  text-align: center;
+  top: 4px;
+  
+  /* Inside Auto Layout */
+  flex: none;
+  order: 0;
+  align-self: center;
+  margin: 6px 0px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 20px;
+}

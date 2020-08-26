@@ -6805,7 +6805,7 @@ button.bg-dark:focus {
 
 .pt-4,
 .py-4 {
-  padding-top: 1.5rem !important; }
+  padding-top: 0rem !important; }
 
 .pr-4,
 .px-4 {
@@ -6813,7 +6813,7 @@ button.bg-dark:focus {
 
 .pb-4,
 .py-4 {
-  padding-bottom: 1.5rem !important; }
+  padding-bottom: 0rem !important; }
 
 .pl-4,
 .px-4 {
@@ -8434,7 +8434,8 @@ h1, h2, h3, h4, h5,
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f200ff', endColorstr='#ffba42', GradientType=1 ); }
 
 .slider-text .text {
-  position: relative; }
+  position: relative;
+}
 
 .slider-text h1 {
   font-size: 10vw;
@@ -9106,7 +9107,8 @@ textarea.form-control {
   display: block;
   position: relative;
   background: rgba(255, 255, 255, 0.1);
-  padding: 0 20px;
+  padding: 0;
+  margin: 0;
   border: 1px solid rgba(0, 0, 0, 0.02);
   -webkit-box-shadow: 0px 5px 21px -14px rgba(0, 0, 0, 0.14);
   -moz-box-shadow: 0px 5px 21px -14px rgba(0, 0, 0, 0.14);
@@ -9778,11 +9780,8 @@ textarea.form-control {
   }
 
   .bg-img {
-    background: url(Checker.png);
-    background-size: cover;
     min-height: 180px;
     background-position: center;
-    background-color: #FFFFFF;
   }
 
   .content {
@@ -9802,11 +9801,26 @@ textarea.form-control {
   }
 
   .events-button {
-    font-family:Poppins; color:white; width: 100%; height: 40px; left: 16px; top: 324px; background: linear-gradient(105.33deg, #C71BDC -9.12%, #751296 100%); border-radius: 8px; text-align: center; font-weight: bold;
+    background: #673AA2;
+    border: 1px;
+    padding: .5rem 1rem;
+    cursor: pointer;
+    border-radius: 8px;
+    width: 360px;
+    height: 40px;
+    left: 16px;
+    top: 324px;
+
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    color: #FFFFFF;
   }
 
   .card-image {
-    width:392px; height:196px; left:0px; top:0px;
+    width:392px; height:206px; left:0px; top:0px;
   }
 
   .events {
@@ -9828,8 +9842,10 @@ textarea.form-control {
   }
 
   .events-text {
-    text-align: center;
     color: black;
+    line-height: 24px;
+    margin-top: 15px;
+    font-weight: normal;
   }
 
   @media screen and (max-width: 700px) and (min-width: 600px) {
@@ -9841,3 +9857,4 @@ textarea.form-control {
   .article-text {
     font-family:"Poppins"; font-size:16px; color:#606060; line-height:24px;
   }
+
