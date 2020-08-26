@@ -22,7 +22,6 @@ const myList = process.env.MAILCHIMP_AUDIENCE_ID;
 
 var mailchimp = new Mailchimp(myKey);
 
-
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs');
 app.set('port', (process.env.PORT || 8000));
@@ -30,6 +29,13 @@ app.set('port', (process.env.PORT || 8000));
 app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+
+const uri = process.env.MONGODB_URI;
+const client = new MongoClient(uri, {
+	useNewUrlParser: true,
+	// useUnifiedTopology: true
+});
+client.connect();
 
 async function insertNewPosts(client, items) {
 	var dbo = client.db('medium-posts');
@@ -99,14 +105,8 @@ function messages(req, res, next) {
 	.then((data) => {
 		// Insert new database entries
 		async function insert() {
-			const uri = process.env.MONGODB_URI;
-
-			const client = new MongoClient(uri, {
-				useNewUrlParser: true,
-				// useUnifiedTopology: true
-			});
 			try {
-				await client.connect();
+				// await client.connect();
 				// await insertNewPosts(client, data.items);
 				await insertPosts(client, data.items);
 			} catch(err) {
@@ -117,13 +117,13 @@ function messages(req, res, next) {
 
 		// Retrieve all database entries
 		async function retrieve() {
-			const uri = process.env.MONGODB_URI;
-			const client = new MongoClient(uri, {
-				useNewUrlParser: true,
+			// const uri = process.env.MONGODB_URI;
+			// const client = new MongoClient(uri, {
+				// useNewUrlParser: true,
 				// useUnifiedTopology: true
-			});
+			// });
 			try {
-				await client.connect();
+				// await client.connect();
 				var ans = [];
 				var dbo = client.db('medium-posts');
 				var cursor = dbo.collection('medium-posts').find({}).sort({pubDate: -1});
