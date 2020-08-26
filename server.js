@@ -106,7 +106,6 @@ function messages(req, res, next) {
 		// Insert new database entries
 		async function insert() {
 			try {
-				// await client.connect();
 				// await insertNewPosts(client, data.items);
 				await insertPosts(client, data.items);
 			} catch(err) {
@@ -117,13 +116,7 @@ function messages(req, res, next) {
 
 		// Retrieve all database entries
 		async function retrieve() {
-			// const uri = process.env.MONGODB_URI;
-			// const client = new MongoClient(uri, {
-				// useNewUrlParser: true,
-				// useUnifiedTopology: true
-			// });
 			try {
-				// await client.connect();
 				var ans = [];
 				var dbo = client.db('medium-posts');
 				var cursor = dbo.collection('medium-posts').find({}).sort({pubDate: -1});
